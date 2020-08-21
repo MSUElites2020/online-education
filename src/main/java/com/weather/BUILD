@@ -1,7 +1,7 @@
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 
 java_library(
-    name = "com.weather-lib",
+    name = "weather_lib",
     srcs = glob(["*.java"]),
     deps = [
         "@maven//:com_google_guava_guava",
@@ -11,6 +11,6 @@ java_library(
 )
 
 java_binary(
-    name = "com.weather",
-    runtime_deps = [":weather-lib"],
+    name = "weather_bin",
+    runtime_deps = [":weather_lib"],
 )
