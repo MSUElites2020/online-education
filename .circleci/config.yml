@@ -8,12 +8,12 @@ jobs:
   build:
     machine: true
     steps:
-      # install bazel
-      - run: sudo apt install curl gnupg
-      - run: curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
-      - run: sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
-      - run: echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
-      - run: sudo apt update && sudo apt install bazel
+      - run:
+          name: Install homebrew
+          command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      - run:
+          name: Install bazel
+          command: brew install bazel
       - checkout
       - run:
           name: Build weather service
