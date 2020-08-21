@@ -5,6 +5,7 @@ parameters:
     type: enum
     enum: [build, deploy]
     default: build
+
 jobs:
   build:
     machine: true
@@ -26,16 +27,17 @@ jobs:
   deploy:
     machine: true
     steps:
-      -run: echo "starting deployment"
+      - run: echo "start deploy"
+
 workflows:
   build:
     when:
-      equal: [build, <<pipeline.parameters.action>>]
+      equal: [ build, << pipeline.parameters.action >> ]
     jobs:
       - build
+
   deploy:
     when:
-      equal: [deploy, <<pipeline.parameters.action>>]
+      equal: [ deploy, << pipeline.parameters.action >> ]
     jobs:
       - deploy
-
