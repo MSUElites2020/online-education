@@ -11,6 +11,6 @@ java_library(
 )
 
 java_binary(
-    name = "weather_bin",
+    name = "weather",
     runtime_deps = [":weather_lib"],
 )
