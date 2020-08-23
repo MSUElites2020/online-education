@@ -25,23 +25,15 @@ commands:
             echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
             sudo apt update && sudo apt install bazel
   build-service:
-    parameters:
-      service:
-        type: string
-        default: "weather"
     steps:
       - run:
-          name: Build << parameters.service >> service
+          name: Build << pipeline.parameters.service >> service
           # TODO: down grade the parameter scope at command level
-          command: bazel build src/main/java/com/<< parameters.service >>:<< pipleline.parameters.service >>_deploy.jar
+          command: bazel build src/main/java/com/<< pipeline.parameters.service >>:<< pipeline.parameters.service >>_deploy.jar
   deploy-service:
-    parameters:
-      service:
-        type: string
-        default: "weather"
     steps:
       - sam/install
-      - run: sam deploy \ --s3-bucket << parameters.service >>-service-deploy --stack-name api-stack --capabilities CAPABILITY_IAM --template-file src/main/java/com/<< parameters.service >>/template.yaml
+      - run: sam deploy \ --s3-bucket << pipeline.parameters.service >>-service-deploy --stack-name api-stack --capabilities CAPABILITY_IAM --template-file src/main/java/com/<< pipeline.parameters.service >>/template.yaml
 
 jobs:
   build:
@@ -49,6 +41,7 @@ jobs:
     steps:
       - install-bazel
       - checkout
+      - # building all services
       - run:
           name: Build service
           command: |-
@@ -58,8 +51,7 @@ jobs:
     machine: true
     steps:
       - build-service
-      - deploy-service:
-          service: << pipeline.parameters.service >>
+      - deploy-service
 
 workflows:
   build:
