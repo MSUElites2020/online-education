@@ -5,10 +5,8 @@ parameters:
     type: enum
     enum: [build, deploy]
     default: build
-
-jobs:
-  build:
-    machine: true
+commands:
+  install-bazel:
     steps:
       - run:
           name: Instal bazel
@@ -18,6 +16,12 @@ jobs:
             sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
             echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
             sudo apt update && sudo apt install bazel
+
+jobs:
+  build:
+    machine: true
+    steps:
+      - install-bazel
       - checkout
       - run:
           name: Build weather service
