@@ -49,6 +49,7 @@ jobs:
   deploy:
     machine: true
     steps:
+      - install-bazel
       - build-service
       - deploy-service
 
