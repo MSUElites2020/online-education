@@ -1,10 +1,18 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
+
+orbs:
+  sam: circleci/aws-serverless@1.0.1
+
 parameters:
   action:
     type: enum
     enum: [build, deploy]
     default: build
+  service:
+    type: string
+    default: "weather"
+
 commands:
   install-bazel:
     steps:
@@ -16,6 +24,24 @@ commands:
             sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
             echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
             sudo apt update && sudo apt install bazel
+  build-service:
+    parameters:
+      service:
+        type: string
+        default: "weather"
+    steps:
+      - run:
+          name: Build << parameters.service >> service
+          # TODO: down grade the parameter scope at command level
+          command: bazel build src/main/java/com/<< parameters.service >>:<< pipleline.parameters.service >>_deploy.jar
+  deploy-service:
+    parameters:
+      service:
+        type: string
+        default: "weather"
+    steps:
+      - sam/install
+      - run: sam deploy \ --s3-bucket << parameters.service >>-service-deploy --stack-name api-stack --capabilities CAPABILITY_IAM --template-file src/main/java/com/<< parameters.service >>/template.yaml
 
 jobs:
   build:
@@ -24,14 +50,16 @@ jobs:
       - install-bazel
       - checkout
       - run:
-          name: Build weather service
+          name: Build service
           command: |-
             echo "build weather service"
             bazel build src/main/java/com/weather:weather_deploy.jar
   deploy:
     machine: true
     steps:
-      - run: echo "start deploy"
+      - build-service
+      - deploy-service:
+          service: << pipeline.parameters.service >>
 
 workflows:
   build:
