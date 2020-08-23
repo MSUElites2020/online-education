@@ -41,7 +41,6 @@ jobs:
     steps:
       - install-bazel
       - checkout
-      - # building all services
       - run:
           name: Build service
           command: |-
