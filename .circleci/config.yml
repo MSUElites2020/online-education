@@ -33,7 +33,7 @@ commands:
   deploy-service:
     steps:
       - sam/install
-      - run: sam deploy \ --s3-bucket << pipeline.parameters.service >>-service-deploy --stack-name api-stack --capabilities CAPABILITY_IAM --template-file src/main/java/com/<< pipeline.parameters.service >>/template.yaml
+      - run: sam deploy --s3-bucket << pipeline.parameters.service >>-service-deploy --stack-name api-stack --capabilities CAPABILITY_IAM --template-file src/main/java/com/<< pipeline.parameters.service >>/template.yaml
 
 jobs:
   build:
