@@ -50,6 +50,7 @@ jobs:
     machine: true
     steps:
       - install-bazel
+      - checkout
       - build-service
       - deploy-service
 
