@@ -1,16 +1,14 @@
 name: CI
 on: [push]
 env:
-  TEST: hello world
+  JAVA_PACKAGE_PATH: src/main/java/com
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run:  |
-        echo $TEST
     - uses: actions/checkout@v2
     - name: Install bazel
       uses: ngalaiko/bazel-action/1.2.1@master
     - name: Build weather
       run: |
-        bazel build src/main/java/com/weather:weather_deploy.jar
+        bazel build $JAVA_PACKAGE_PATH/weather:weather_deploy.jar
