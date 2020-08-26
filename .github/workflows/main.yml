@@ -8,4 +8,5 @@ jobs:
     - name: Install bazel
       uses: ngalaiko/bazel-action/1.2.1@master
     - name: Build weather
-      run: bazel build src/main/java/com/weather:weather_deploy.jar
+      run: |
+        bazel build src/main/java/com/weather:weather_deploy.jar
