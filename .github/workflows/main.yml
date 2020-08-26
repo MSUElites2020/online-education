@@ -1,10 +1,12 @@
 name: CI
 on: [push]
-
 env:
   JAVA_PACKAGE_PATH: src/main/java/com
 jobs:
   build:
+    strategy:
+      matrix:
+        service: [weather]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -12,6 +14,6 @@ jobs:
       uses: ngalaiko/bazel-action/1.2.1@master
     - run: |
         echo test again
-    - name: Build weather
+    - name: Build service
       run: |
-        bazel build $JAVA_PACKAGE_PATH/weather:weather_deploy.jar
+        bazel build $JAVA_PACKAGE_PATH/${{ matrix.service }}:${{ matrix.service }}_deploy.jar
