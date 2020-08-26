@@ -1,5 +1,6 @@
 name: CI
 on: [push]
+
 env:
   JAVA_PACKAGE_PATH: src/main/java/com
 jobs:
@@ -13,4 +14,4 @@ jobs:
         echo test again
     - name: Build weather
       run: |
-        bazel build $JAVA_PACKAGE_PATH/${{ matrix.weather }}:${{ matrix.weather }}_deploy.jar
+        bazel build $JAVA_PACKAGE_PATH/weather:weather_deploy.jar
