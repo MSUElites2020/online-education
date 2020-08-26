@@ -14,3 +14,4 @@ jobs:
     - name: Build weather
       run: |
         bazel build $JAVA_PACKAGE_PATH/weather:weather_deploy.jar
+      shell: bash
