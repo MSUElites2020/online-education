@@ -9,7 +9,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install bazel
       uses: ngalaiko/bazel-action/1.2.1@master
-    - run: echo test
+    - run: |
+      echo test
     - name: Build weather
       run: |
         bazel build $JAVA_PACKAGE_PATH/weather:weather_deploy.jar
