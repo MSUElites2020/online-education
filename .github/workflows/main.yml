@@ -1,9 +1,13 @@
 name: CI
 on: [push]
+env:
+  TEST: hello world
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - run:  |
+        echo $TEST
     - uses: actions/checkout@v2
     - name: Install bazel
       uses: ngalaiko/bazel-action/1.2.1@master
