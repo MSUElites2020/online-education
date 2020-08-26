@@ -1,8 +1,5 @@
 name: CI
 on: [push]
-strategy:
-  matrix:
-    service: [weather]
 env:
   JAVA_PACKAGE_PATH: src/main/java/com
 jobs:
