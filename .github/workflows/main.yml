@@ -1,5 +1,8 @@
 name: CI
 on: [push]
+stretegy:
+  matrix:
+    service: [weather]
 env:
   JAVA_PACKAGE_PATH: src/main/java/com
 jobs:
@@ -13,5 +16,4 @@ jobs:
         echo test again
     - name: Build weather
       run: |
-        bazel build $JAVA_PACKAGE_PATH/weather:weather_deploy.jar
-      shell: bash
+        bazel build $JAVA_PACKAGE_PATH/${{ matrix.weather }}:${{ matrix.weather }}_deploy.jar
