@@ -1,6 +1,6 @@
 name: CI
 on: [push]
-stretegy:
+strategy:
   matrix:
     service: [weather]
 env:
