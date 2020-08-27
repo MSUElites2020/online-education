@@ -11,4 +11,4 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: etcho ${{ github.event.inputs.service }}     
+      - run: echo ${{ github.event.inputs.service }}     
