@@ -24,4 +24,13 @@ jobs:
         uses: ngalaiko/bazel-action/1.2.1@master
       - name: Build deploy jar
         run: bazel build //$JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}:${{ github.event.inputs.service }}_deploy.jar
-      - run: ls
+      # https://github.com/r0zar/sam-deploy-action
+      - name: Deploy
+        uses: r0zar/sam-deploy-action@v1.0
+        env:
+          TEMPLATE: $JAVA_PACKAGE_PATH + '/template.yaml'
+          AWS_STACK_NAME: api-stack
+          AWS_REGION: us-east-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEPLOY_BUCKET: 'staging-sam-lambda-deploy'      
