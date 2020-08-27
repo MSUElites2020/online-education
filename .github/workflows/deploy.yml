@@ -1,0 +1,13 @@
+# https://docs.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#manually-running-a-workflow
+on:
+  repository_dispatch:
+    inputs:
+      service:
+        description: 'Service name'
+        required: true
+        default: 'weather'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: etcho ${{ github.event.inputs.service }}     
