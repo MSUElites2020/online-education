@@ -13,4 +13,4 @@ jobs:
         echo test again
     - name: Build service
       run: |
-        bazel build //$JAVA_PACKAGE_PATH
+        bazel build //$JAVA_PACKAGE_PATH/...
