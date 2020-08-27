@@ -9,8 +9,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install bazel
       uses: ngalaiko/bazel-action/1.2.1@master
-    - run: |
-        echo test again
     - name: Build service
       run: |
         bazel build //$JAVA_PACKAGE_PATH/...
