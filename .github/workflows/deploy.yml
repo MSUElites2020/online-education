@@ -1,5 +1,7 @@
 # https://docs.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#manually-running-a-workflow
 name: Deploy
+env:
+  JAVA_PACKAGE_PATH: src/main/java/com
 on:
   workflow_dispatch:
     inputs:
@@ -7,8 +9,19 @@ on:
         description: 'Service name'
         required: true
         default: 'weather'
+      branch:
+        description: 'Branch name'
+        required: true
+        default: 'master'
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event.inputs.service }}     
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.branch }} 
+      - name: Install bazel
+        uses: ngalaiko/bazel-action/1.2.1@master
+      - name: Build deploy jar
+        run: bazel build //$JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}:${{ github.event.inputs.service }}_deploy.jar
+      - run: ls
