@@ -4,9 +4,6 @@ env:
   JAVA_PACKAGE_PATH: src/main/java/com
 jobs:
   build:
-    strategy:
-      matrix:
-        service: [weather]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -16,4 +13,4 @@ jobs:
         echo test again
     - name: Build service
       run: |
-        bazel build $JAVA_PACKAGE_PATH/${{ matrix.service }}:${{ matrix.service }}_deploy.jar
+        bazel build //$JAVA_PACKAGE_PATH
