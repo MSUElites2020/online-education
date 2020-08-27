@@ -1,6 +1,7 @@
 # https://docs.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#manually-running-a-workflow
+name: Deploy
 on:
-  repository_dispatch:
+  workflow_dispatch:
     inputs:
       service:
         description: 'Service name'
