@@ -36,7 +36,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - run: |
-          aws s3api bucket-exists --bucket staging-sam-lambda-deploy
+          aws s3api list-buckets
       - name: AWS SAM CLI setup
         uses: tkt-actions/aws-sam-cli@v1.0.2
         env:
