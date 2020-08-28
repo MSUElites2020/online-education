@@ -1,7 +1,5 @@
 # https://docs.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#manually-running-a-workflow
 name: Deploy
-env:
-  JAVA_PACKAGE_PATH: src/main/java/com
 on:
   workflow_dispatch:
     inputs:
@@ -15,6 +13,9 @@ on:
         default: 'master'
 jobs:
   deploy:
+    env:
+      SERVICE: ${{ github.event.inputs.service }}
+      JAVA_PACKAGE_PATH: src/main/java/com  
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,7 +24,12 @@ jobs:
       - name: Install bazel
         uses: ngalaiko/bazel-action/1.2.1@master
       - name: Build deploy jar
-        run: bazel build //$JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}:${{ github.event.inputs.service }}_deploy.jar
+        run: bazel build //$JAVA_PACKAGE_PATH/$SERVICE:$SERVICE_deploy.jar
+      - name: Copy binary
+        run: |
+          cp bazel-bin/$JAVA_PACKAGE_PATH/$SERVICE:$SERVICE.jar $JAVA_PACKAGE_PATH/$SERVICE
+          cd $JAVA_PACKAGE_PATH/$SERVICE
+          ls
       - name: AWS SAM CLI setup
         uses: tkt-actions/aws-sam-cli@v1.0.2
         env:
