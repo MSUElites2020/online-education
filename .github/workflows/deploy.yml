@@ -24,7 +24,7 @@ jobs:
       - name: Install bazel
         uses: ngalaiko/bazel-action/1.2.1@master
       - name: Build deploy jar
-        run: bazel build //$JAVA_PACKAGE_PATH/$SERVICE:$SERVICE_deploy.jar
+        run: bazel build //$JAVA_PACKAGE_PATH/$SERVICE:${{ github.event.inputs.service }}_deploy.jar
       - name: Copy binary
         run: |
           cp bazel-bin/$JAVA_PACKAGE_PATH/$SERVICE:$SERVICE_deploy.jar $JAVA_PACKAGE_PATH/$SERVICE
