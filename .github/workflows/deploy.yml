@@ -29,7 +29,9 @@ jobs:
       - name: Copy binary
         run: |
           ls
-          cp bazel-bin/$JAVA_BINARY_PATH $JAVA_BINARY_PATH
+          cd bazel-bin/src/main/java/com/weather
+          ls
+          cp bazel-bin/$JAVA_BINARY_PATH $JAVA_PACKAGE_PATH/$SERVICE
           cd $JAVA_PACKAGE_PATH/$SERVICE
           
       - name: AWS SAM CLI setup
