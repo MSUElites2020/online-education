@@ -27,7 +27,7 @@ jobs:
       - name: Copy binary
         run: |
           cp bazel-bin///$JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}/${{ github.event.inputs.service }}_deploy.jar $JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}
-          cd $JAVA_PACKAGE_PATH/$SERVICE
+          cd $JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}
           ls
       - name: AWS SAM CLI setup
         uses: tkt-actions/aws-sam-cli@v1.0.2
