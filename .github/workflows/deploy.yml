@@ -31,4 +31,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-esat-1
         with:
-          cmd: sam --version
+          cmd: sam deploy --s3-bucket staging-sam-lambda-deploy --stack-name api-stack --capabilities CAPABILITY_IAM --template-file $JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}/template.yaml
