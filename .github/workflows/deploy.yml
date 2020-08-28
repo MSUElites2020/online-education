@@ -29,19 +29,11 @@ jobs:
           cp bazel-bin///$JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}/${{ github.event.inputs.service }}_deploy.jar $JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}
           cd $JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}
           ls
-      - name: "Configure AWS Credentials"
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - run: |
-          aws s3api list-buckets
       - name: AWS SAM CLI setup
         uses: tkt-actions/aws-sam-cli@v1.0.2
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-esat-1
+          AWS_DEFAULT_REGION: us-east-1
         with:
           cmd: sam deploy --s3-bucket staging-sam-lambda-deploy --stack-name api-stack --capabilities CAPABILITY_IAM --template-file $JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}/template.yaml
