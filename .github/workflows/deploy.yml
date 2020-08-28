@@ -24,12 +24,11 @@ jobs:
         uses: ngalaiko/bazel-action/1.2.1@master
       - name: Build deploy jar
         run: bazel build //$JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}:${{ github.event.inputs.service }}_deploy.jar
-      - name: Copy binary
+      - name: Copy binary to service package
         run: |
           cp bazel-bin///$JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}/${{ github.event.inputs.service }}_deploy.jar $JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}
           cd $JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}
-          ls
-      - name: AWS SAM CLI setup
+      - name: Deploy to aws
         uses: tkt-actions/aws-sam-cli@v1.0.2
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
