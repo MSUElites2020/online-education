@@ -11,7 +11,7 @@ public class WeatherEvent {
     }
 
     public WeatherEvent(String locationName, Double temperature, Long timestamp, Double longitude, Double latitude) {
-        this.locationName = locationName + "new change demo 08/23/2020 14:18";
+        this.locationName = locationName + "new change demo 08/30/2020 14:05";
         this.temperature = temperature;
         this.timestamp = timestamp;
         this.longitude = longitude;
