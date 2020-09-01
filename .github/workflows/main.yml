@@ -1,7 +1,7 @@
 name: CI
 on: [push]
 env:
-  JAVA_PACKAGE_PATH: src/main/java/com
+  JAVA_PACKAGE_PATH: src/main/java/com/online_education
 jobs:
   build:
     runs-on: ubuntu-latest

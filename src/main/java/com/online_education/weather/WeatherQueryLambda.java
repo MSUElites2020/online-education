@@ -1,4 +1,4 @@
-package com.weather;
+package com.online_education.weather;
 
 import java.io.IOException;
 import java.util.List;

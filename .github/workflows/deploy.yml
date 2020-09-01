@@ -14,7 +14,7 @@ on:
 jobs:
   deploy:
     env:
-      JAVA_PACKAGE_PATH: src/main/java/com
+      JAVA_PACKAGE_PATH: src/main/java/com/online_education
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
