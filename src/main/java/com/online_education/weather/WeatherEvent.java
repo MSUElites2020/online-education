@@ -1,4 +1,4 @@
-package com.weather;
+package com.online_education.weather;
 
 public class WeatherEvent {
     public String locationName;
