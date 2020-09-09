@@ -20,6 +20,9 @@ maven_install(
         "com.amazonaws:aws-java-sdk-core:1.11.837",
         "com.amazonaws:aws-java-sdk-dynamodb:1.11.837",
         "com.fasterxml.jackson.core:jackson-databind:2.11.2",
+        "org.mockito:mockito-core:3.5.10",
+        "com.google.truth:truth:1.0.1",
+        "org.projectlombok:lombok:1.18.12",
     ],
     fetch_sources = True,
     repositories = [
