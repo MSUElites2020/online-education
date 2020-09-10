@@ -1,10 +1,8 @@
-load("@rules_java//java:defs.bzl", "java_binary", "java_test")
+load("//bazel:junit.bzl", "junit_tests")
 
-java_test(
+junit_tests(
     name = "weather_tests",
-    size = "small",
-    srcs = glob(["*.java"]),
-    test_class = "com.online_education.weather.WeatherEventLambdaTest",
+    srcs = glob(["*Test.java"]),
     deps = [
         "@maven//:junit_junit",
         "@maven//:com_google_truth_truth",
