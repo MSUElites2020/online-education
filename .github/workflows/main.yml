@@ -1,7 +1,8 @@
 name: CI
 on: [push]
 env:
-  JAVA_PACKAGE_PATH: src/main/java/com/online_education
+  JAVA_PACKAGE_PATH: src/main/java/com/online_education,
+  JAVA_TEST_PATH: src/test/java/com/online_education
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,4 +13,4 @@ jobs:
     - name: Build service
       run:  bazel build //$JAVA_PACKAGE_PATH/...
     - name: Test
-      run:  bazel test //$JAVA_PACKAGE_PATH/...
+      run:  bazel test //$JAVA_TEST_PATH/...
