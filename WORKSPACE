@@ -11,10 +11,22 @@ http_archive(
     url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" % RULES_JVM_EXTERNAL_TAG,
 )
 
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+DAGGER_TAG = "2.28.1"
+DAGGER_SHA = "9e69ab2f9a47e0f74e71fe49098bea908c528aa02fa0c5995334447b310d0cdd"
+http_archive(
+    name = "dagger",
+    strip_prefix = "dagger-dagger-%s" % DAGGER_TAG,
+    sha256 = DAGGER_SHA,
+    urls = ["https://github.com/google/dagger/archive/dagger-%s.zip" % DAGGER_TAG],
+)
+
 load("@rules_jvm_external//:defs.bzl", "maven_install")
+load("@dagger//:workspace_defs.bzl", "DAGGER_ARTIFACTS", "DAGGER_REPOSITORIES")
 
 maven_install(
-    artifacts = [
+    artifacts = DAGGER_ARTIFACTS + [
         "junit:junit:4.12",
         "com.google.guava:guava:28.0-jre",
         "com.amazonaws:aws-java-sdk-core:1.11.837",
@@ -25,7 +37,7 @@ maven_install(
         "org.projectlombok:lombok:1.18.12",
     ],
     fetch_sources = True,
-    repositories = [
+    repositories = DAGGER_REPOSITORIES + [
         "http://uk.maven.org/maven2",
         "https://jcenter.bintray.com/",
     ],
