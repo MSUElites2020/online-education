@@ -1,0 +1,11 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+java_binary(
+    name = "aws_resource_module",
+    srcs = glob(["AWSResourceModule/*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
+        "//:dagger",
+    ],
+)

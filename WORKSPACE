@@ -23,6 +23,7 @@ http_archive(
 )
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
+# dagger setup steps https://github.com/google/dagger
 load("@dagger//:workspace_defs.bzl", "DAGGER_ARTIFACTS", "DAGGER_REPOSITORIES")
 
 maven_install(
@@ -35,6 +36,7 @@ maven_install(
         "org.mockito:mockito-core:3.5.10",
         "com.google.truth:truth:1.0.1",
         "org.projectlombok:lombok:1.18.12",
+        "com.google.errorprone:error_prone_annotations:2.4.0",
     ],
     fetch_sources = True,
     repositories = DAGGER_REPOSITORIES + [

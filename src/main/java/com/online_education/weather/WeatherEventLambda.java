@@ -2,7 +2,8 @@ package com.online_education.weather;
 
 import java.io.IOException;
 
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import javax.inject.Inject;
+
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
@@ -13,10 +14,12 @@ public class WeatherEventLambda {
   private final ObjectMapper objectMapper =
       new ObjectMapper()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-  private final DynamoDB dynamoDB = new DynamoDB(AmazonDynamoDBClientBuilder.defaultClient());
+  @Inject
+  DynamoDB dynamoDB;
   private final String tableName = System.getenv("LOCATIONS_TABLE");
 
   public ApiGatewayResponse handler(ApiGatewayRequest request) throws IOException {
+    DaggerAWSResourceComponent.create().inject(this);
     final WeatherEvent
         weatherEvent = objectMapper.readValue(request.body, WeatherEvent.class);
 
