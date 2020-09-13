@@ -17,7 +17,7 @@ public class WeatherServiceHandler {
     try {
       return createWeatherCommand.execute(request);
     } catch (Exception e) {
-      return ApiGatewayResponse.builder().statusCode(500).body("something went wrong").build();
+      return new ApiGatewayResponse(500, "create weather failed");
     }
   }
 
@@ -25,7 +25,7 @@ public class WeatherServiceHandler {
     try {
       return getWeatherCommand.execute(request);
     } catch (Exception e) {
-      return ApiGatewayResponse.builder().statusCode(500).body("something went wrong").build();
+      return new ApiGatewayResponse(500, "get weather failed");
     }
   }
 }
