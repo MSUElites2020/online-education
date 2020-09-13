@@ -4,7 +4,6 @@ import static com.google.common.truth.Truth.assertThat;
 
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.online_education.weather.command.CreateWeatherCommand;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

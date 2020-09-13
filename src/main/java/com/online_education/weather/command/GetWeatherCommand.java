@@ -29,9 +29,9 @@ public class GetWeatherCommand {
 
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
     final String limitParam =
-        request.getQueryStringParameters() == null
+        request.queryStringParameters == null
             ? DEFAULT_LIMIT
-            : request.getQueryStringParameters().getOrDefault("limit", DEFAULT_LIMIT);
+            : request.queryStringParameters.getOrDefault("limit", DEFAULT_LIMIT);
     final int limit = Integer.parseInt(limitParam);
 
     final ScanRequest scanRequest = new ScanRequest().withTableName(tableName).withLimit(limit);
@@ -52,6 +52,6 @@ public class GetWeatherCommand {
 
     final String json = objectMapper.writeValueAsString(events);
 
-    return ApiGatewayResponse.builder().statusCode(200).body(json).build();
+    return new ApiGatewayResponse(200, json);
   }
 }
