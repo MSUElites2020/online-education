@@ -8,6 +8,10 @@ import lombok.Data;
 @Data
 @Builder
 public class ApiGatewayRequest {
+
+  public ApiGatewayRequest() {
+  }
+
   private String body;
   private Map<String, String> queryStringParameters = new HashMap<>();
 }

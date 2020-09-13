@@ -6,6 +6,10 @@ import lombok.Data;
 @Builder
 @Data
 public class ApiGatewayResponse {
+
+    public ApiGatewayResponse() {
+    }
+
     private Integer statusCode;
     private String body;
 }
