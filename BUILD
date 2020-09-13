@@ -11,3 +11,23 @@ java_library(
         "//:dagger",
         "@maven//:com_google_errorprone_error_prone_annotations",]
 )
+
+java_library(
+    name = "lombok",
+    visibility = ["//visibility:public"],
+    exports = [
+        "@maven//:org_projectlombok_lombok",
+    ],
+    exported_plugins = [
+        ":lombok_plugin"
+    ],
+)
+
+java_plugin(
+    name = "lombok_plugin",
+    processor_class = "lombok.launch.AnnotationProcessorHider$AnnotationProcessor",
+    deps = [
+        "@maven//:org_projectlombok_lombok",
+    ],
+    generates_api = 1,
+)

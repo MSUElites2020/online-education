@@ -1,11 +1,11 @@
 package com.online_education.weather;
 
-public class ApiGatewayResponse {
-    public Integer statusCode;
-    public String body;
+import lombok.Builder;
+import lombok.Data;
 
-    public ApiGatewayResponse(Integer statusCode, String body) {
-        this.statusCode = statusCode;
-        this.body = body;
-    }
+@Builder
+@Data
+public class ApiGatewayResponse {
+    private Integer statusCode;
+    private String body;
 }

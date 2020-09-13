@@ -1,8 +1,6 @@
-/**
- * Copyright (C) 2020 Urban Compass, Inc.
- */
 package com.online_education.dagger.AWSResourceModule;
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import javax.inject.Singleton;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -19,5 +17,11 @@ public class DynamoDBModule {
   @Singleton
   DynamoDB dynamoDB() {
     return new DynamoDB(AmazonDynamoDBClientBuilder.defaultClient());
+  }
+
+  @Provides
+  @Singleton
+  AmazonDynamoDB amazonDynamoDB() {
+    return AmazonDynamoDBClientBuilder.defaultClient();
   }
 }
