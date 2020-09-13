@@ -1,26 +1,33 @@
-load("@rules_java//java:defs.bzl", "java_binary", "java_library", "java_test")
+load("@dagger//:workspace_defs.bzl", "dagger_rules")
+load("@rules_java//java:defs.bzl", "java_library")
 
-package(default_visibility = ["//visibility:public"])
+dagger_rules()
+
+# Dagger will build self injection with @CanIgnoreReturnValue which comes from com_google_errorprone_error_prone_annotations
+java_library(
+    name = "dagger_with_errorprone",
+    visibility = ["//visibility:public"],
+    exports = [
+        "//:dagger",
+        "@maven//:com_google_errorprone_error_prone_annotations",]
+)
 
 java_library(
-    name = "java-maven-lib",
-    srcs = glob(["src/main/java/com/example/myproject/*.java"]),
-    deps = ["@maven//:com_google_guava_guava"],
-)
-
-java_binary(
-    name = "java-maven",
-    main_class = "com.example.myproject.App",
-    runtime_deps = [":java-maven-lib"],
-)
-
-java_test(
-    name = "tests",
-    srcs = glob(["src/test/java/com/example/myproject/*.java"]),
-    test_class = "com.example.myproject.TestApp",
-    deps = [
-        ":java-maven-lib",
-        "@maven//:com_google_guava_guava",
-        "@maven//:junit_junit",
+    name = "lombok",
+    visibility = ["//visibility:public"],
+    exports = [
+        "@maven//:org_projectlombok_lombok",
     ],
+    exported_plugins = [
+        ":lombok_plugin"
+    ],
+)
+
+java_plugin(
+    name = "lombok_plugin",
+    processor_class = "lombok.launch.AnnotationProcessorHider$AnnotationProcessor",
+    deps = [
+        "@maven//:org_projectlombok_lombok",
+    ],
+    generates_api = 1,
 )

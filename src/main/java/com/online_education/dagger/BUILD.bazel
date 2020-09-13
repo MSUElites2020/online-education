@@ -1,0 +1,24 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+java_library(
+    name = "aws_resource_module",
+    srcs = glob(["AWSResourceModule/*.java"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
+        "//:dagger",
+    ],
+)
+
+java_library(
+    name = "object_mapper_module",
+    srcs = ["ObjectMapperModule.java"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:com_fasterxml_jackson_core_jackson_databind",
+        "//:dagger",
+    ],
+    exports = [
+        "@maven//:com_fasterxml_jackson_core_jackson_databind",
+    ]
+)
