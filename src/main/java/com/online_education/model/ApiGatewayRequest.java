@@ -1,4 +1,4 @@
-package com.online_education.weather;
+package com.online_education.model;
 
 import java.util.HashMap;
 import java.util.Map;
