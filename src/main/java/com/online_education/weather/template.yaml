@@ -40,7 +40,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: weather_deploy.jar
-      Handler: com.online_education.weather.WeatherServiceHandler::handlerGetWeather
+      Handler: com.online_education.weather.WeatherServiceHandler::handleGetWeather
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref LocationsTable

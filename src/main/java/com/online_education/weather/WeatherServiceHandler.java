@@ -19,7 +19,7 @@ public class WeatherServiceHandler {
     try {
       return createWeatherCommand.execute(request);
     } catch (Exception e) {
-      return new ApiGatewayResponse(500, "something went wrong");
+      return new ApiGatewayResponse(500, "create weather failed");
     }
   }
 
@@ -27,7 +27,7 @@ public class WeatherServiceHandler {
     try {
       return getWeatherCommand.execute(request);
     } catch (Exception e) {
-      return new ApiGatewayResponse(500, "something went wrong");
+      return new ApiGatewayResponse(500, "get weather failed");
     }
   }
 }

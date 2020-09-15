@@ -22,7 +22,7 @@ public class CreateWeatherCommand {
   }
 
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
-    final WeatherEvent weatherEvent = objectMapper.readValue(request.getBody(), WeatherEvent.class);
+    final WeatherEvent weatherEvent = objectMapper.readValue(request.body, WeatherEvent.class);
 
     final Table table = dynamoDB.getTable(tableName);
     final Item item =
@@ -34,9 +34,6 @@ public class CreateWeatherCommand {
             .withDouble("latitude", weatherEvent.getLatitude());
     table.putItem(item);
 
-    return ApiGatewayResponse.builder()
-        .statusCode(200)
-        .body(weatherEvent.getLocationName())
-        .build();
+    return new ApiGatewayResponse(200, weatherEvent.getLocationName());
   }
 }
