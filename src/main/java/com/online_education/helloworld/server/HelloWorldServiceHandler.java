@@ -1,6 +1,6 @@
-package com.online_education.hello_world.server;
+package com.online_education.helloworld.server;
 
-import com.online_education.hello_world.command.HelloWorldCommand;
+import com.online_education.helloworld.command.HelloWorldCommand;
 import com.online_education.model.ApiGatewayResponse;
 import javax.inject.Inject;
 
@@ -12,7 +12,7 @@ public class HelloWorldServiceHandler {
   HelloWorldCommand helloWorldCommand;
 
   public HelloWorldServiceHandler() {
-    DaggerHelloWorldComponent.create().inject(this);
+   // DaggerHelloWorldComponent.create().inject(this);
   }
 
   public ApiGatewayResponse handleHelloWorld(String request) {

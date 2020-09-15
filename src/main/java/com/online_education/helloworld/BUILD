@@ -1,7 +1,7 @@
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 
 java_library(
-    name = "hello_world_lib",
+    name = "helloworld_lib",
     srcs = glob([
         "*.java",
         "*/*.java"
@@ -14,6 +14,6 @@ java_library(
 )
 
 java_binary(
-    name = "hello_world",
-    runtime_deps = ["hello_world_lib"],
+    name = "helloworld",
+    runtime_deps = ["helloworld_lib"],
 )

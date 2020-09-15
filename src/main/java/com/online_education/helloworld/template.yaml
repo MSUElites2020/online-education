@@ -15,7 +15,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: hello_world_deploy.jar
-      Handler: com.online_education.hello_world.server.HelloWorldServiceHandler::handleHelloWorld
+      Handler: com.online_education.helloworld.server.HelloWorldServiceHandler::handleHelloWorld
       Events:
         ApiEvents:
           Type: Api

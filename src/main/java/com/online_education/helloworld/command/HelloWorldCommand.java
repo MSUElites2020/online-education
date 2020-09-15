@@ -1,4 +1,4 @@
-package com.online_education.hello_world.command;
+package com.online_education.helloworld.command;
 
 import com.online_education.model.ApiGatewayResponse;
 import javax.inject.Inject;
