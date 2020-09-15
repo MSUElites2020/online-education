@@ -1,6 +1,7 @@
 package com.online_education.helloworld.server;
 
 import com.online_education.helloworld.command.HelloWorldCommand;
+import com.online_education.model.ApiGatewayRequest;
 import com.online_education.model.ApiGatewayResponse;
 import javax.inject.Inject;
 
@@ -15,7 +16,7 @@ public class HelloWorldServiceHandler {
    // DaggerHelloWorldComponent.create().inject(this);
   }
 
-  public ApiGatewayResponse handleHelloWorld(String request) {
+  public ApiGatewayResponse handleHelloWorld(ApiGatewayRequest request) {
     try {
       return helloWorldCommand.execute(request);
     } catch (Exception e) {

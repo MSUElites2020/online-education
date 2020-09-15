@@ -20,5 +20,5 @@ Resources:
         ApiEvents:
           Type: Api
           Properties:
-            Path: /Hello
+            Path: /hello
             Method: GET
