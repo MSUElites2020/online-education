@@ -5,15 +5,12 @@ import com.online_education.model.ApiGatewayRequest;
 import com.online_education.model.ApiGatewayResponse;
 import javax.inject.Inject;
 
-/**
- * @auther fangboyang
- */
+/** @auther fangboyang */
 public class HelloWorldServiceHandler {
-  @Inject
-  HelloWorldCommand helloWorldCommand;
+  @Inject HelloWorldCommand helloWorldCommand;
 
   public HelloWorldServiceHandler() {
-   // DaggerHelloWorldComponent.create().inject(this);
+    DaggerHelloWorldComponent.create().inject(this);
   }
 
   public ApiGatewayResponse handleHelloWorld(ApiGatewayRequest request) {
