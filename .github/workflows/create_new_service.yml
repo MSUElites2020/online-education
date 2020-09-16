@@ -10,9 +10,9 @@ on:
       service_name:
         description: 'servicename (ep. helloworld)'
         required: true
-      service_class_name:
-        description: 'Service Name (ep. HelloWorld)'
-        required: true
+     # service_class_name:
+      #  description: 'Service Name (ep. HelloWorld)'
+       # required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
