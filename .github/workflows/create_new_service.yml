@@ -29,7 +29,6 @@ jobs:
         uses: foxted/github-action-envsubst@v1.0.2
       - name: test
         run: |
-          git clone git@github.com:MSUElites2020/service-template.git
           ls
           export service_name='${{ github.event.inputs.service_name }}'
           echo $service_name
