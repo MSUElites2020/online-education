@@ -1,5 +1,7 @@
 package com.online_education.weather;
 
+import com.online_education.model.ApiGatewayRequest;
+import com.online_education.model.ApiGatewayResponse;
 import com.online_education.weather.command.CreateWeatherCommand;
 import com.online_education.weather.command.GetWeatherCommand;
 import javax.inject.Inject;
