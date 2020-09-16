@@ -29,10 +29,8 @@ jobs:
         uses: foxted/github-action-envsubst@v1.0.2
       - name: test
         run: |
-          echo "${service_name} suffix" > test.java
-          cat test.java
+          ls
           export service_name='${{ github.event.inputs.service_name }}'
-          envsubst < test.java
-          cat test.java
+          echo $service_name
 
       
