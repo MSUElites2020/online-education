@@ -7,10 +7,10 @@ name: Create New Service
 on:
   workflow_dispatch:
     inputs:
-      servicename:
+      service_name:
         description: 'servicename (ep. helloworld)'
         required: true
-      ServiceName:
+      service_class_name:
         description: 'Service Name (ep. HelloWorld)'
         required: true
 
@@ -29,9 +29,9 @@ jobs:
         uses: foxted/github-action-envsubst@v1.0.2
       - name: test
         run: |
-          echo "${servicename}" > test.java
+          echo "${service_name} suffix" > test.java
           cat test.java
-          export servicename='${{ github.event.inputs.servicename }}'
+          export service_name='${{ github.event.inputs.service_name }}'
           envsubst < test.java
           cat test.java
 
