@@ -42,8 +42,12 @@ jobs:
           envsubst < lambda_template/command/HelloWorldCommand.java > $JAVA_PACKAGE_PATH/$SERVICE_NAME/command/HelloWorldCommand.java
           envsubst < lambda_template/server/Component.java > $JAVA_PACKAGE_PATH/$SERVICE_NAME/server/Component.java
           envsubst < lambda_template/server/ServiceHandler.java > $JAVA_PACKAGE_PATH/$SERVICE_NAME/server/ServiceHandler.java
-      - name: push to repot
+      - name: commit changes
         run: |
+          git config --local user.name ${{ github.actor }}
           git add . 
           git commit -m "Create new service: $SERVICE_NAME"
-          git push
+      - name: push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
