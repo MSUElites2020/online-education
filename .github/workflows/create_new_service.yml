@@ -48,5 +48,5 @@ jobs:
           git config --local user.name ${{ github.actor }}
           git add . 
           git commit -m "Create new service: $SERVICE_NAME"
-          git push
+          git push --set-upstream origin master
           
