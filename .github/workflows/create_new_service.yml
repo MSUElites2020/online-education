@@ -7,12 +7,12 @@ name: Create New Service
 on:
   workflow_dispatch:
     inputs:
-      service_name:
-        description: 'servicename (ep. helloworld)'
+      SERVICE_NAME:
+        description: 'Service name (ep. helloworld)'
         required: true
-     # service_class_name:
-      #  description: 'Service Name (ep. HelloWorld)'
-       # required: true
+      SERVICE_CLASS_NAME:
+        description: 'Service class name (ep. HelloWorld)'
+        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,17 +20,17 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    env:
+      SERVICE_NAME: ${{ github.event.inputs.SERVICE_NAME }}
+      SERVICE_CLASS_NAME: ${{ github.event.inputs.SERVICE_CLASS_NAME }} 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: envsubst
         uses: foxted/github-action-envsubst@v1.0.2
-      - name: test
+      - name: create new service package
         run: |
-          ls
-          export service_name='${{ github.event.inputs.service_name }}'
-          echo $service_name
-
+          export SERVICE_NAME=$SERVICE_NAME 
+          envsubst < lambda_template/BUILD > $SERVICE_NAME/BUILD
       
