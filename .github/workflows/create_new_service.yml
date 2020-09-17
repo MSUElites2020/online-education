@@ -39,4 +39,5 @@ jobs:
           export SERVICE_CLASS_NAME=$SERVICE_CLASS_NAME
           envsubst < lambda_template/BUILD > $JAVA_PACKAGE_PATH/$SERVICE_NAME/BUILD
           cat $JAVA_PACKAGE_PATH/$SERVICE_NAME/BUILD
+          git status
       
