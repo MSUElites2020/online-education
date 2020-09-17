@@ -23,6 +23,7 @@ jobs:
     env:
       SERVICE_NAME: ${{ github.event.inputs.SERVICE_NAME }}
       SERVICE_CLASS_NAME: ${{ github.event.inputs.SERVICE_CLASS_NAME }} 
+      JAVA_PACKAGE_PATH: src/main/java/com/online_education
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -31,7 +32,11 @@ jobs:
         uses: foxted/github-action-envsubst@v1.0.2
       - name: create new service package
         run: |
+          mkdir $JAVA_PACKAGE_PATH/$SERVICE_NAME
+          mkdir $JAVA_PACKAGE_PATH/$SERVICE_NAME/command
+          mkdir $JAVA_PACKAGE_PATH/$SERVICE_NAME/server
           export SERVICE_NAME=$SERVICE_NAME 
-          envsubst < lambda_template/BUILD > $SERVICE_NAME/BUILD
-          cat $SERVICE_NAME/BUILD
+          export SERVICE_CLASS_NAME=$SERVICE_CLASS_NAME
+          envsubst < lambda_template/BUILD > $JAVA_PACKAGE_PATH/$SERVICE_NAME/BUILD
+          cat $JAVA_PACKAGE_PATH/$SERVICE_NAME/BUILD
       
