@@ -14,8 +14,8 @@ Resources:
   HelloWorldLambda:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ${servicename}_deploy.jar
-      Handler: com.online_education.${servicename}.server.${ServiceName}ServiceHandler::handleHelloWorld
+      CodeUri: ${SERVICE_NAME}_deploy.jar
+      Handler: com.online_education.${SERVICE_NAME}.server.${SERVICE_CLASS_NAME}ServiceHandler::handleHelloWorld
       Events:
         ApiEvents:
           Type: Api

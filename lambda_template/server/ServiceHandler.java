@@ -1,15 +1,15 @@
-package com.online_education.helloworld.server;
+package com.online_education.${SERVICE_NAME}.server;
 
-import com.online_education.helloworld.command.HelloWorldCommand;
+import com.online_education.${SERVICE_NAME}.command.HelloWorldCommand;
 import com.online_education.model.ApiGatewayRequest;
 import com.online_education.model.ApiGatewayResponse;
 import javax.inject.Inject;
 
 /** @auther fangboyang */
-public class ${ServiceName}ServiceHandler {
-  @Inject ${ServiceName}Command helloWorldCommand;
+public class ${SERVICE_CLASS_NAME}ServiceHandler {
+  @Inject HelloWorldCommand helloWorldCommand;
 
-  public ${ServiceName}ServiceHandler() {
+  public ${SERVICE_CLASS_NAME}ServiceHandler() {
     DaggerHelloWorldComponent.create().inject(this);
   }
 

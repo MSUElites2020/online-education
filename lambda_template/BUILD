@@ -1,7 +1,7 @@
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 
 java_library(
-    name = "${servicename}_lib",
+    name = "${SERVICE_NAME}_lib",
     srcs = glob([
         "*.java",
         "*/*.java"
@@ -15,6 +15,6 @@ java_library(
 )
 
 java_binary(
-    name = "${servicename}",
-    runtime_deps = ["${servicename}_lib"],
+    name = "${SERVICE_NAME}",
+    runtime_deps = ["${SERVICE_NAME}_lib"],
 )

@@ -1,4 +1,4 @@
-package com.online_education.${servicename}.command;
+package com.online_education.${SERVICE_NAME}.command;
 
 import com.online_education.model.ApiGatewayRequest;
 import com.online_education.model.ApiGatewayResponse;

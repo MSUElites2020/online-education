@@ -1,11 +1,11 @@
-package com.online_education.${servicename}.server;
+package com.online_education.${SERVICE_NAME}.server;
 
 import dagger.Component;
 import javax.inject.Singleton;
 
-/** @auther fangboyang hehehe */
+/** @auther fangboyang */
 @Singleton
 @Component
-public interface ${ServiceName}Component {
-  void inject(${ServiceName}ServiceHandler ${ServiceName}ServiceHandler);
+public interface ${SERVICE_CLASS_NAME}Component {
+  void inject(${SERVICE_CLASS_NAME}ServiceHandler ${SERVICE_NAME}ServiceHandler);
 }
