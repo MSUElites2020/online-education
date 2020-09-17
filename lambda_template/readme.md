@@ -1,0 +1,1 @@
+### A sample package for creating new aws lambda service

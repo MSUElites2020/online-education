@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: sample service
+
+Globals:
+  Function:
+    Runtime: java8
+    MemorySize: 512
+    Timeout: 25
+  Api:
+    OpenApiVersion: '3.0.1'
+
+Resources:
+  HelloWorldLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ${SERVICE_NAME}_deploy.jar
+      Handler: com.online_education.${SERVICE_NAME}.server.${SERVICE_CLASS_NAME}ServiceHandler::handleHelloWorld
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: GET
