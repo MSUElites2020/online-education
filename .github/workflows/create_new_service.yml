@@ -33,4 +33,5 @@ jobs:
         run: |
           export SERVICE_NAME=$SERVICE_NAME 
           envsubst < lambda_template/BUILD > $SERVICE_NAME/BUILD
+          cat $SERVICE_NAME/BUILD
       
