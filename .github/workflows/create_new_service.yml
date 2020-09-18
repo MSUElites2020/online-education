@@ -46,6 +46,7 @@ jobs:
         run: |
           git checkout -b ${{ github.actor }}/create-$SERVICE_NAME-service
           git config --local user.name ${{ github.actor }}
+          echo ${{ github.actor }}
           git add . 
           git commit -m "Create new service: $SERVICE_NAME"
           git push
