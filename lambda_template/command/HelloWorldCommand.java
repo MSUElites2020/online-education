@@ -5,9 +5,6 @@ import com.online_education.model.ApiGatewayResponse;
 import com.online_education.server.Command;
 import javax.inject.Inject;
 
-/**
- * @auther fangboyang
- */
 public class HelloWorldCommand implements Command {
 
   @Inject
