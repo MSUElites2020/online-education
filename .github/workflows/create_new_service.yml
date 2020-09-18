@@ -49,5 +49,4 @@ jobs:
           echo ${{ github.actor }}
           git add . 
           git commit -m "Create new service: $SERVICE_NAME"
-          git push
-          
+          git push -u origin head 
