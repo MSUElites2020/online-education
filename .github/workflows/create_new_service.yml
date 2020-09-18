@@ -46,5 +46,5 @@ jobs:
       - name: create pr
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: $PR_NAME
-          title: $PR_NAME
+          branch: ${{ env.PR_NAME }}
+          title: ${{ env.PR_NAME }}
