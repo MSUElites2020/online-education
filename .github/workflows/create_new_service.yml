@@ -41,8 +41,8 @@ jobs:
           envsubst < lambda_template/BUILD > $JAVA_PACKAGE_PATH/$SERVICE_NAME/BUILD
           envsubst < lambda_template/template.yaml > $JAVA_PACKAGE_PATH/$SERVICE_NAME/template.yaml
           envsubst < lambda_template/command/HelloWorldCommand.java > $JAVA_PACKAGE_PATH/$SERVICE_NAME/command/HelloWorldCommand.java
-          envsubst < lambda_template/server/Component.java > $JAVA_PACKAGE_PATH/$SERVICE_NAME/server/Component.java
-          envsubst < lambda_template/server/ServiceHandler.java > $JAVA_PACKAGE_PATH/$SERVICE_NAME/server/ServiceHandler.java
+          envsubst < lambda_template/server/Component.java > $JAVA_PACKAGE_PATH/$SERVICE_NAME/server/${{ env.SERVICE_CLASS_NAME }}Component.java
+          envsubst < lambda_template/server/ServiceHandler.java > $JAVA_PACKAGE_PATH/$SERVICE_NAME/server/${{ env.SERVICE_CLASS_NAME }}ServiceHandler.java
       - name: create pr
         uses: peter-evans/create-pull-request@v3
         with:
