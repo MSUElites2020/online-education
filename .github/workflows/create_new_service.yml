@@ -44,7 +44,6 @@ jobs:
           envsubst < lambda_template/server/ServiceHandler.java > $JAVA_PACKAGE_PATH/$SERVICE_NAME/server/ServiceHandler.java
       - name: commit changes
         run: |
-          git branch --set-upstream-to master origin/master
           git checkout -b ${{ github.actor }}/create-$SERVICE_NAME-service
           git config --local user.name ${{ github.actor }}
           git add . 
