@@ -24,6 +24,7 @@ jobs:
       SERVICE_NAME: ${{ github.event.inputs.SERVICE_NAME }}
       SERVICE_CLASS_NAME: ${{ github.event.inputs.SERVICE_CLASS_NAME }} 
       JAVA_PACKAGE_PATH: src/main/java/com/online_education
+      PR_NAME: create-${{ github.event.inputs.SERVICE_NAME }}-service
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -45,5 +46,5 @@ jobs:
       - name: create pr
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: create-service
-          title: create-service
+          branch: $PR_NAME
+          title: $PR_NAME
