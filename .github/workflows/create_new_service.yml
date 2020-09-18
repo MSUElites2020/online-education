@@ -45,5 +45,5 @@ jobs:
       - name: create pr
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: create-${SERVICE_NAME}-service
-          title: create-${SERVICE_NAME}-service
+          branch: create-$SERVICE_NAME-service
+          title: create-$SERVICE_NAME-service
