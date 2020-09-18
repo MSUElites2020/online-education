@@ -9,7 +9,7 @@ public class ${SERVICE_CLASS_NAME}ServiceHandler {
   @Inject HelloWorldCommand helloWorldCommand;
 
   public ${SERVICE_CLASS_NAME}ServiceHandler() {
-    DaggerHelloWorldComponent.create().inject(this);
+    // Dagger${SERVICE_CLASS_NAME}Component.create().inject(this);
   }
 
   public ApiGatewayResponse handleHelloWorld(ApiGatewayRequest request) {
