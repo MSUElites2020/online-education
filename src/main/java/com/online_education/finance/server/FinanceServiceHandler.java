@@ -9,7 +9,7 @@ public class FinanceServiceHandler {
   @Inject HelloWorldCommand helloWorldCommand;
 
   public FinanceServiceHandler() {
-    // DaggerFinanceComponent.create().inject(this);
+    DaggerFinanceComponent.create().inject(this);
   }
 
   public ApiGatewayResponse handleHelloWorld(ApiGatewayRequest request) {
