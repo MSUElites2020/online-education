@@ -32,6 +32,8 @@ maven_install(
         "com.google.guava:guava:28.0-jre",
         "com.amazonaws:aws-java-sdk-core:1.11.837",
         "com.amazonaws:aws-java-sdk-dynamodb:1.11.837",
+        "com.amazonaws:aws-lambda-java-core:1.2.1",
+        "com.amazonaws:aws-lambda-java-events:3.3.0",
         "com.fasterxml.jackson.core:jackson-databind:2.11.2",
         "org.mockito:mockito-core:3.5.10",
         "com.google.truth:truth:1.0.1",
