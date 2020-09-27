@@ -9,7 +9,7 @@ public class UserServiceHandler {
   @Inject HelloWorldCommand helloWorldCommand;
 
   public UserServiceHandler() {
-    // DaggerUserComponent.create().inject(this);
+     DaggerUserComponent.create().inject(this);
   }
 
   public ApiGatewayResponse handleHelloWorld(ApiGatewayRequest request) {

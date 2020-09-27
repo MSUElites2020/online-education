@@ -9,6 +9,7 @@ public class ${SERVICE_CLASS_NAME}ServiceHandler {
   @Inject HelloWorldCommand helloWorldCommand;
 
   public ${SERVICE_CLASS_NAME}ServiceHandler() {
+    // Uncomment before use !!!
     // Dagger${SERVICE_CLASS_NAME}Component.create().inject(this);
   }
 
