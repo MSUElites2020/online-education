@@ -1,22 +1,23 @@
 package com.online_education.user.server;
-
-import com.online_education.user.command.HelloWorldCommand;
-import com.online_education.model.ApiGatewayRequest;
-import com.online_education.model.ApiGatewayResponse;
+import com.amazonaws.services.lambda.runtime.Context;
+import com.online_education.user.command.UserRegisterCommand;
+import java.io.InputStream;
+import java.io.OutputStream;
 import javax.inject.Inject;
 
 public class UserServiceHandler {
-  @Inject HelloWorldCommand helloWorldCommand;
+  @Inject
+  UserRegisterCommand userRegisterCommand;
 
   public UserServiceHandler() {
-     DaggerUserComponent.create().inject(this);
+    DaggerUserComponent.create().inject(this);
   }
 
-  public ApiGatewayResponse handleHelloWorld(ApiGatewayRequest request) {
+  public void handleUserRegister(InputStream is, OutputStream os, Context context) {
     try {
-      return helloWorldCommand.execute(request);
-    } catch (Exception e) {
-      return new ApiGatewayResponse(500, "Hello world failed!");
+      userRegisterCommand.handleRequest(is, os, context);
+    } catch (Exception ex) {
+      context.getLogger().log(ex.getMessage());
     }
   }
 }
