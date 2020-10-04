@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
-Description: sample service
+Description: User service
 
 Globals:
   Function:
@@ -11,14 +11,8 @@ Globals:
     OpenApiVersion: '3.0.1'
 
 Resources:
-  HelloWorldLambda:
+  UserRegisterLambda:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: user_deploy.jar
-      Handler: com.online_education.user.server.UserServiceHandler::handleHelloWorld
-      Events:
-        ApiEvents:
-          Type: Api
-          Properties:
-            Path: /hello
-            Method: GET
+      Handler: com.online_education.user.server.UserServiceHandler::handleUserRegister
