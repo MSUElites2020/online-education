@@ -38,6 +38,12 @@ maven_install(
         "com.google.truth:truth:1.0.1",
         "org.projectlombok:lombok:1.18.12",
         "com.google.errorprone:error_prone_annotations:2.4.0",
+        "org.apache.logging.log4j:log4j-api:2.13.0",
+        "org.apache.logging.log4j:log4j-core:2.13.2",
+        "org.apache.logging.log4j:log4j-slf4j18-impl:2.13.0",
+        "com.amazonaws:aws-lambda-java-log4j2:1.1.0",
+        "org.slf4j:slf4j-api:1.7.30",
+        "org.slf4j:slf4j-simple:2.0.0-alpha1",
     ],
     fetch_sources = True,
     repositories = DAGGER_REPOSITORIES + [
