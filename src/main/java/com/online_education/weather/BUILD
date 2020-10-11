@@ -13,7 +13,6 @@ java_library(
         "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
         "@maven//:org_apache_logging_log4j_log4j_api",
         "@maven//:org_apache_logging_log4j_log4j_core",
-        "@maven//:org_apache_logging_log4j_log4j_slf4j18_impl",
         "@maven//:com_amazonaws_aws_lambda_java_log4j2",
         "//:lombok",
         "//src/main/java/com/online_education/dagger:aws_resource_module",
