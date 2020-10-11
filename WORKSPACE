@@ -38,6 +38,8 @@ maven_install(
         "com.google.truth:truth:1.0.1",
         "org.projectlombok:lombok:1.18.12",
         "com.google.errorprone:error_prone_annotations:2.4.0",
+        "org.slf4j:slf4j-api:1.7.30",
+        "org.slf4j:slf4j-jdk14:2.0.0-alpha1",
     ],
     fetch_sources = True,
     repositories = DAGGER_REPOSITORIES + [
