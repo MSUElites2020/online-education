@@ -20,7 +20,8 @@ java_library(
         "//src/main/java/com/online_education/dagger:object_mapper_module",
         "//src/main/java/com/online_education/model",
         "//:dagger_with_errorprone",
-        "@maven//:org_slf4j_slf4j_api",],
+        "@maven//:org_slf4j_slf4j_api",
+        "@maven//:org_slf4j_slf4j_simple"],
 )
 
 java_binary(
