@@ -33,7 +33,7 @@ public class GetWeatherCommand {
 
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
     Logger log = LoggerFactory.getLogger(GetWeatherCommand.class);
-    log.debug("log test {}", 123);
+    log.info("log test {}", 123);
     final String limitParam =
         request.queryStringParameters == null
             ? DEFAULT_LIMIT
