@@ -14,7 +14,8 @@ java_library(
         "//:dagger_with_errorprone",
         "//src/main/java/com/online_education/server",
         "//src/main/java/com/online_education/dagger:aws_resource_module",
-        "//src/main/java/com/online_education/dagger:object_mapper_module"
+        "//src/main/java/com/online_education/dagger:object_mapper_module",
+        "//:log",
     ],
 )
 
