@@ -11,11 +11,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Slf4j
 public class GetWeatherCommand {
   private final ObjectMapper objectMapper;
   private final AmazonDynamoDB dynamoDB;
