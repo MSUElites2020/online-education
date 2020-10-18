@@ -8,7 +8,6 @@ import lombok.Data;
 /**
  * @auther fansun
  */
-@Builder
 @Data
 public class UserEvent {
   private String userName;
