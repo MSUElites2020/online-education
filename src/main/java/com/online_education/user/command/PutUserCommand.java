@@ -18,7 +18,7 @@ import javax.inject.Inject;
 public class PutUserCommand {
   private ObjectMapper objectMapper;
   private DynamoDB dynamoDB;
-  private final String tableName = System.getenv("LOCATIONS_TABLE");
+  private final String tableName = "student";
 
   @Inject
   public PutUserCommand(DynamoDB dynamoDB, ObjectMapper objectMapper) {
