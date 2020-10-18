@@ -30,7 +30,7 @@ public class UserServiceHandler {
     try {
       return putUserCommand.execute(request);
     } catch (Exception e) {
-      return new ApiGatewayResponse(500, "create user failed");
+      return new ApiGatewayResponse(500, "create user failed" + e.getMessage());
     }
   }
 }
