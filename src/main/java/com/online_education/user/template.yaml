@@ -16,3 +16,17 @@ Resources:
     Properties:
       CodeUri: user_deploy.jar
       Handler: com.online_education.user.server.UserServiceHandler::handleUserRegister
+  UserEventLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: user_deploy.jar
+      Handler: com.online_education.user.server.UserServiceHandler::handlePutUser
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: student
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: POST
