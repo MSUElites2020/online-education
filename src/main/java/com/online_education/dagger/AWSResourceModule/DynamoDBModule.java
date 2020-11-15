@@ -1,6 +1,8 @@
 package com.online_education.dagger.AWSResourceModule;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -23,5 +25,12 @@ public class DynamoDBModule {
   @Singleton
   AmazonDynamoDB amazonDynamoDB() {
     return AmazonDynamoDBClientBuilder.defaultClient();
+  }
+
+  @Provides
+  @Singleton
+  @Inject
+  DynamoDBMapper dynamoDBMapper(AmazonDynamoDB dynamoDB) {
+    return new DynamoDBMapper(dynamoDB);
   }
 }
