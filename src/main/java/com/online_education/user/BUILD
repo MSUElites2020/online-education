@@ -15,6 +15,7 @@ java_library(
         "//src/main/java/com/online_education/server",
         "//src/main/java/com/online_education/dagger:aws_resource_module",
         "//src/main/java/com/online_education/dagger:object_mapper_module",
+        "//src/main/java/com/online_education/dao/student",
         "//:log",
     ],
 )
