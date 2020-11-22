@@ -7,6 +7,7 @@ import com.online_education.user.command.UserRegisterCommand;
 import com.online_education.user.command.UserUpdateCommand;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 
 public class UserServiceHandler {
@@ -35,7 +36,7 @@ public class UserServiceHandler {
     try {
       return userCreateCommand.execute(request);
     } catch (Exception e) {
-      return new ApiGatewayResponse(500, "create user failed");
+      return new ApiGatewayResponse(500, "Create user failed " + e.getMessage());
     }
   }
 
@@ -43,7 +44,7 @@ public class UserServiceHandler {
     try {
       return userUpdateCommand.execute(request);
     } catch (Exception e) {
-      return new ApiGatewayResponse(500, "create user failed");
+      return new ApiGatewayResponse(500, "Update user failed " + e.getMessage());
     }
   }
 
@@ -51,7 +52,7 @@ public class UserServiceHandler {
     try {
       return userGetCommand.execute(request);
     } catch (Exception e) {
-      return new ApiGatewayResponse(500, "create user failed");
+      return new ApiGatewayResponse(500, "Get user failed " + e.getMessage());
     }
   }
 }
