@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * @auther fangboyang
  */
-@DynamoDBTable(tableName = "Student")
+@DynamoDBTable(tableName = "student")
 @Data
 @Builder
 public class Student {
