@@ -3,6 +3,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.online_education.model.ApiGatewayRequest;
 import com.online_education.model.ApiGatewayResponse;
 import com.online_education.user.command.UserCreateCommand;
+import com.online_education.user.command.UserGetCommand;
 import com.online_education.user.command.UserRegisterCommand;
 import com.online_education.user.command.UserUpdateCommand;
 import java.io.InputStream;
@@ -18,7 +19,7 @@ public class UserServiceHandler {
   @Inject
   UserUpdateCommand userUpdateCommand;
   @Inject
-  UserUpdateCommand userGetCommand;
+  UserGetCommand userGetCommand;
 
   public UserServiceHandler() {
     DaggerUserComponent.create().inject(this);
