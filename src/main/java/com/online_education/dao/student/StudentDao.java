@@ -5,4 +5,6 @@ package com.online_education.dao.student;
  */
 public interface StudentDao {
   void create(Student student);
+  Student get(String userName);
+  void update(Student student);
 }
