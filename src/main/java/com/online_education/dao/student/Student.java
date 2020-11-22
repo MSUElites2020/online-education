@@ -13,5 +13,4 @@ import lombok.Data;
 public class Student {
   @DynamoDBHashKey(attributeName = "user_name")
   private String userName;
-  public Student(){}
 }

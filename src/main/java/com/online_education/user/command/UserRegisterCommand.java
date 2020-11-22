@@ -30,7 +30,8 @@ public class UserRegisterCommand implements RequestStreamHandler {
     context.getLogger().log("Received: " + eventNode); // Just log the Json message
 
     String userName = eventNode.get("userName").textValue();
-    Student student = Student.builder().userName(userName).build();
+    Student student = new Student();
+    student.setUserName(userName);
     studentDao.create(student);
 
     context.getLogger().log("Returning: " + eventNode);  // Log after the insertion
