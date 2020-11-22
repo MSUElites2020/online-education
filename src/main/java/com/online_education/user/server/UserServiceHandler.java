@@ -52,7 +52,7 @@ public class UserServiceHandler {
     try {
       return userGetCommand.execute(request);
     } catch (Exception e) {
-      return new ApiGatewayResponse(500, "Get user failed " + e.getMessage());
+      return new ApiGatewayResponse(500, "Get user failed " + e.getMessage() + " " + request.queryStringParameters.get("userName"));
     }
   }
 }
