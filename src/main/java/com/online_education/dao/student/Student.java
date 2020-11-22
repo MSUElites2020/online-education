@@ -10,8 +10,8 @@ import lombok.Data;
  */
 @DynamoDBTable(tableName = "student")
 @Data
-@Builder
 public class Student {
   @DynamoDBHashKey(attributeName = "user_name")
   private String userName;
+  public Student(){}
 }
