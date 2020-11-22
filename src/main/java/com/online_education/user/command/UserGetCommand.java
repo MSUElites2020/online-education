@@ -26,6 +26,6 @@ public class UserGetCommand {
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
     String userName = request.queryStringParameters.get("userName");
     Student student = studentDao.get(userName);
-    return new ApiGatewayResponse(200, student.getUserName());
+    return new ApiGatewayResponse(200, student.getUserName() + "input is : " + userName);
   }
 }
