@@ -9,10 +9,13 @@ import com.online_education.model.ApiGatewayRequest;
 import com.online_education.model.ApiGatewayResponse;
 import java.io.IOException;
 import javax.inject.Inject;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @auther fansun
  */
+
+@Slf4j
 public class UserGetCommand {
   private ObjectMapper objectMapper;
   private StudentDao studentDao;
