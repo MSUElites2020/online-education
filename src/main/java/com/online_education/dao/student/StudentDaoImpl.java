@@ -2,6 +2,7 @@ package com.online_education.dao.student;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig.SaveBehavior;
 import javax.inject.Inject;
 
 /**
@@ -30,7 +31,7 @@ public class StudentDaoImpl implements StudentDao {
   public void update(Student student) {
     DynamoDBMapperConfig dynamoDBMapperConfig = new DynamoDBMapperConfig.Builder()
         .withConsistentReads(DynamoDBMapperConfig.ConsistentReads.CONSISTENT)
-        .withSaveBehavior(DynamoDBMapperConfig.SaveBehavior.UPDATE)
+        .withSaveBehavior(SaveBehavior.UPDATE_SKIP_NULL_ATTRIBUTES)
         .build();
     dynamoDBMapper.save(student, dynamoDBMapperConfig);
   }
