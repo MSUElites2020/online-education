@@ -24,7 +24,7 @@ Resources:
       Hanlder: com.online_education.user.server.UserServiceHandler::indexStudent
       Events:
         Stream:
-          Type: DnamoDB
+          Type: DynamoDB
           Properties:
             Stream: arn:aws:dynamodb:us-east-1:343484209947:table/student/stream/2020-12-30T22:46:15.048
             StartingPosition: TRIM_HORIZON
