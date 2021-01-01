@@ -21,7 +21,7 @@ Resources:
     Policies: dynamoDB-es
     Properties:
       CodeUri: user_deploy.jar
-      Hanlder: com.online_education.user.server.UserServiceHandler::indexStudent
+      Handler: com.online_education.user.server.UserServiceHandler::indexStudent
       Events:
         Stream:
           Type: DynamoDB
