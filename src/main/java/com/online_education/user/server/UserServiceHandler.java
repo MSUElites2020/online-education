@@ -8,7 +8,6 @@ import com.online_education.user.command.UserRegisterCommand;
 import com.online_education.user.command.UserUpdateCommand;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 
 public class UserServiceHandler {

@@ -27,6 +27,7 @@ public class UserCreateCommand {
 
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
     final Student student = objectMapper.readValue(request.body, Student.class);
+    log.info("Creating student " + student.toString());
     studentDao.create(student);
     return new ApiGatewayResponse(200, student.getUserName());
   }

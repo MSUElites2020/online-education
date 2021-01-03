@@ -27,6 +27,7 @@ public class UserUpdateCommand {
 
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
     final Student student = objectMapper.readValue(request.body, Student.class);
+    log.info("Updating student " + student.toString());
     studentDao.update(student);
     return new ApiGatewayResponse(200, student.getUserName());
   }
