@@ -34,6 +34,7 @@ maven_install(
         "com.amazonaws:aws-java-sdk-dynamodb:1.11.837",
         "com.amazonaws:aws-lambda-java-core:1.2.1",
         "com.fasterxml.jackson.core:jackson-databind:2.11.2",
+        "com.amazonaws:aws-lambda-java-events:3.7.0",
         "org.mockito:mockito-core:3.5.10",
         "com.google.truth:truth:1.0.1",
         "org.projectlombok:lombok:1.18.12",

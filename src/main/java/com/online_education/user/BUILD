@@ -11,6 +11,7 @@ java_library(
         "@maven//:com_amazonaws_aws_lambda_java_core",
         "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
         "//:lombok",
+        "@maven//:com_amazonaws_aws_lambda_java_events",
         "//src/main/java/com/online_education/model",
         "//:dagger_with_errorprone",
         "//src/main/java/com/online_education/server",
