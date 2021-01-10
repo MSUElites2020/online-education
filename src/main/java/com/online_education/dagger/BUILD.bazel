@@ -22,3 +22,15 @@ java_library(
         "@maven//:com_fasterxml_jackson_core_jackson_databind",
     ]
 )
+
+java_library(
+    name = "elastic_search_module",
+    srcs = ["AWSResourceModule/ElasticSearchModule.java"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//:dagger",
+        "//3rdparty/jvm/org/elasticsearch/client:elasticsearch_rest_high_level_client",
+        "//3rdparty/jvm/org/elasticsearch/client:elasticsearch_rest_client",
+        "//3rdparty/jvm/org/apache/httpcomponents:httpcore",
+        ],
+)

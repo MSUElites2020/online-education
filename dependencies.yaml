@@ -1,0 +1,18 @@
+options:
+  buildHeader: [ "load(\"@io_bazel_rules_scala//scala:scala_import.bzl\", \"scala_import\")",
+    "load(\"@io_bazel_rules_scala//scala:scala.bzl\", \"scala_library\")" ]
+  languages: [ "java", "scala:2.11.8" ]
+  resolverType: "coursier"
+  resolvers:
+    - id: "mavencentral"
+      type: "default"
+      url: https://repo.maven.apache.org/maven2/
+  strictVisibility: true
+  transitivity: runtime_deps
+  versionConflictPolicy: highest
+
+dependencies:
+  org.elasticsearch.client:
+    elasticsearch-rest-high-level-client:
+      lang: java
+      version: "7.10.1"
