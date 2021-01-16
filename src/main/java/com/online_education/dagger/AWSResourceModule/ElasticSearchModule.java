@@ -5,7 +5,6 @@ import dagger.Provides;
 import javax.inject.Singleton;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 
 @Module
@@ -14,7 +13,8 @@ public class ElasticSearchModule {
   @Singleton
   RestHighLevelClient restHighLevelClient() {
     return new RestHighLevelClient(
-        RestClient.builder(new HttpHost[])
-    );
+        RestClient.builder(
+            new HttpHost(
+                "https://search-msu-online-education-2-tnjwcrvx7dbwbmolrw6za44fru.us-east-1.es.amazonaws.com:80")));
   }
 }

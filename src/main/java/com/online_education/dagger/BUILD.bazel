@@ -1,8 +1,8 @@
 load("@rules_java//java:defs.bzl", "java_library")
 
 java_library(
-    name = "aws_resource_module",
-    srcs = glob(["AWSResourceModule/*.java"]),
+    name = "dynamodb_module",
+    srcs = glob(["AWSResourceModule/DynamoDBModule.java"]),
     visibility = ["//visibility:public"],
     deps = [
         "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
@@ -33,4 +33,7 @@ java_library(
         "//3rdparty/jvm/org/elasticsearch/client:elasticsearch_rest_client",
         "//3rdparty/jvm/org/apache/httpcomponents:httpcore",
         ],
+    exports = [
+        "//3rdparty/jvm/org/elasticsearch/client:elasticsearch_rest_high_level_client",
+    ]
 )

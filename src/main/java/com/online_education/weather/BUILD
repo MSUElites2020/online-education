@@ -12,7 +12,7 @@ java_library(
         "@maven//:com_amazonaws_aws_java_sdk_core",
         "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
         "//:lombok",
-        "//src/main/java/com/online_education/dagger:aws_resource_module",
+        "//src/main/java/com/online_education/dagger:dynamodb_module",
         "//src/main/java/com/online_education/dagger:object_mapper_module",
         "//src/main/java/com/online_education/model",
         "//:dagger_with_errorprone",
