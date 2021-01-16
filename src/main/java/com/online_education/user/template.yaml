@@ -16,6 +16,49 @@ Resources:
     Properties:
       CodeUri: user_deploy.jar
       Handler: com.online_education.user.server.UserServiceHandler::handleUserRegister
+  UserCreateLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: user_deploy.jar
+      Handler: com.online_education.user.server.UserServiceHandler::handleUserCreate
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: student
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /student
+            Method: POST
+  UserUpdateLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: user_deploy.jar
+      Handler: com.online_education.user.server.UserServiceHandler::handleUserUpdate
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: student
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /student
+            Method: PATCH
+  UserGetLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: user_deploy.jar
+      Handler: com.online_education.user.server.UserServiceHandler::handleUserGet
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: student
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /student
+            Method: GET
+
   StudendESIndexLambda:
     Type: AWS::Serverless::Function
     Policies: dynamoDB-es
@@ -30,3 +73,46 @@ Resources:
             StartingPosition: TRIM_HORIZON
             BatchSize: 100
             Enabled: true
+
+  TeacherCreateLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: user_deploy.jar
+      Handler: com.online_education.user.server.UserServiceHandler::handleTeacherCreate
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: teacher
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /teacher
+            Method: POST
+  TeacherUpdateLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: user_deploy.jar
+      Handler: com.online_education.user.server.UserServiceHandler::handleTeacherUpdate
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: teacher
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /teacher
+            Method: PATCH
+  TeacherGetLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: user_deploy.jar
+      Handler: com.online_education.user.server.UserServiceHandler::handleTeacherGet
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: teacher
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /teacher
+            Method: GET

@@ -1,4 +1,4 @@
-package com.online_education.dao.student;
+package com.online_education.dao.teacher;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
@@ -6,11 +6,11 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * @auther fangboyang
+ * @auther fansun
  */
-@DynamoDBTable(tableName = "student")
+@DynamoDBTable(tableName = "teacher")
 @Data
-public class Student {
+public class Teacher {
   @DynamoDBHashKey(attributeName = "user_name")
   private String userName;
   private String name;

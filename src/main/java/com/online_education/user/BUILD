@@ -10,6 +10,7 @@ java_library(
         "@maven//:com_amazonaws_aws_java_sdk_core",
         "@maven//:com_amazonaws_aws_lambda_java_core",
         "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
+        "//:lombok",
         "@maven//:com_amazonaws_aws_lambda_java_events",
         "//src/main/java/com/online_education/model",
         "//:dagger_with_errorprone",
@@ -18,8 +19,8 @@ java_library(
         "//src/main/java/com/online_education/dagger:elastic_search_module",
         "//src/main/java/com/online_education/dagger:object_mapper_module",
         "//src/main/java/com/online_education/dao/student",
+        "//src/main/java/com/online_education/dao/teacher",
         "//:log",
-        "//:lombok",
     ],
 )
 

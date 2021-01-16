@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import javax.inject.Inject;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class UserRegisterCommand implements RequestStreamHandler {
 
   private ObjectMapper objectMapper;
@@ -27,13 +29,12 @@ public class UserRegisterCommand implements RequestStreamHandler {
   public void handleRequest(InputStream is, OutputStream os, Context context) throws IOException {
     // TODO objectMapper should map directly to student instance
     JsonNode eventNode = objectMapper.readTree(is);  // convert event stream to Json Node format
-    context.getLogger().log("Received: " + eventNode); // Just log the Json message
 
     String userName = eventNode.get("userName").textValue();
-    Student student = Student.builder().userName(userName).build();
+    Student student = new Student();
+    student.setUserName(userName);
+    log.info("Registering student " + student.toString());
     studentDao.create(student);
-
-    context.getLogger().log("Returning: " + eventNode);  // Log after the insertion
 
     objectMapper.writeValue(os, eventNode);
   }
