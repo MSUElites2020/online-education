@@ -35,5 +35,6 @@ java_library(
         ],
     exports = [
         "@maven//:org_elasticsearch_client_elasticsearch_rest_high_level_client",
+        "@maven//:org_elasticsearch_client_elasticsearch_rest_client",
     ]
 )
