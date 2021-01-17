@@ -48,6 +48,11 @@ maven_install(
         "com.amazonaws:aws-lambda-java-log4j2:1.1.0",
         "org.slf4j:slf4j-api:1.7.30",
         "org.slf4j:slf4j-simple:2.0.0-alpha1",
+        "org.elasticsearch:elasticsearch-x-content:7.10.2",
+        "org.elasticsearch.client:elasticsearch-rest-high-level-client:7.10.2",
+        "org.elasticsearch.client:elasticsearch-rest-client:7.10.2",
+        "org.apache.httpcomponents:httpcore:4.4.12",
+        "org.elasticsearch:elasticsearch:7.10.2",
     ],
     fetch_sources = True,
     repositories = DAGGER_REPOSITORIES + [

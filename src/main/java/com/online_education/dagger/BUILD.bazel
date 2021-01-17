@@ -29,11 +29,11 @@ java_library(
     visibility = ["//visibility:public"],
     deps = [
         "//:dagger",
-        "//3rdparty/jvm/org/elasticsearch/client:elasticsearch_rest_high_level_client",
-        "//3rdparty/jvm/org/elasticsearch/client:elasticsearch_rest_client",
-        "//3rdparty/jvm/org/apache/httpcomponents:httpcore",
+        "@maven//:org_elasticsearch_client_elasticsearch_rest_high_level_client",
+        "@maven//:org_elasticsearch_client_elasticsearch_rest_client",
+        "@maven//:org_apache_httpcomponents_httpcore",
         ],
     exports = [
-        "//3rdparty/jvm/org/elasticsearch/client:elasticsearch_rest_high_level_client",
+        "@maven//:org_elasticsearch_client_elasticsearch_rest_high_level_client",
     ]
 )

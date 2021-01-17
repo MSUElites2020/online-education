@@ -4,12 +4,15 @@ java_library(
     name = "user_lib",
     srcs = glob([
         "*.java",
-        "*/*.java"
+        "command/*.java",
+        "server/*.java",
     ]),
     deps = [
         "@maven//:com_amazonaws_aws_java_sdk_core",
         "@maven//:com_amazonaws_aws_lambda_java_core",
         "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
+        "@maven//:org_elasticsearch_elasticsearch_x_content",
+        "@maven//:org_elasticsearch_elasticsearch",
         "//:lombok",
         "@maven//:com_amazonaws_aws_lambda_java_events",
         "//src/main/java/com/online_education/model",

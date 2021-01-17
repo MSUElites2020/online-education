@@ -13,6 +13,7 @@ import com.online_education.user.command.UserCreateCommand;
 import com.online_education.user.command.UserGetCommand;
 import com.online_education.user.command.UserRegisterCommand;
 import com.online_education.user.command.UserUpdateCommand;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import javax.inject.Inject;
@@ -99,13 +100,8 @@ public class UserServiceHandler {
     }
   }
 
-  public String indexStudent(DynamodbEvent ddbEvent, Context context) {
+  public String indexStudent(DynamodbEvent ddbEvent, Context context) throws IOException {
     indexStudentCommand.handleDynamoDBEvent(ddbEvent);
-    for (DynamodbStreamRecord record : ddbEvent.getRecords()) {
-      log.info(record.getEventID());
-      log.info(record.getEventName());
-      log.info(record.getDynamodb().toString());
-    }
-    return "Successfully processed " + ddbEvent.getRecords().size() + " records.";
+    return "Successfully indexed " + ddbEvent.getRecords().size() + " records.";
   }
 }
