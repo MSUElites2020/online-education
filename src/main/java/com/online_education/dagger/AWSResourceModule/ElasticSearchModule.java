@@ -15,6 +15,6 @@ public class ElasticSearchModule {
     return new RestHighLevelClient(
         RestClient.builder(
             new HttpHost(
-                "https://search-msu-online-education-2-tnjwcrvx7dbwbmolrw6za44fru.us-east-1.es.amazonaws.com:80")));
+                "search-msu-online-education-2-tnjwcrvx7dbwbmolrw6za44fru.us-east-1.es.amazonaws.com", 80, "https")));
   }
 }
