@@ -26,9 +26,6 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 # dagger setup steps https://github.com/google/dagger
 load("@dagger//:workspace_defs.bzl", "DAGGER_ARTIFACTS", "DAGGER_REPOSITORIES")
 
-load("//3rdparty:workspace.bzl", "maven_dependencies")
-maven_dependencies()
-
 maven_install(
     artifacts = DAGGER_ARTIFACTS + [
         "junit:junit:4.12",
