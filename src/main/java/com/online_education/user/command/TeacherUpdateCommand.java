@@ -26,6 +26,7 @@ public class TeacherUpdateCommand {
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
     final Teacher teacher = objectMapper.readValue(request.body, Teacher.class);
     log.info("Updating teacher " + teacher.toString());
+    // update teacher
     teacherDao.update(teacher);
     return new ApiGatewayResponse(200, teacher.getUserName());
   }
