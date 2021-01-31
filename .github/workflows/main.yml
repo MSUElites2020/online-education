@@ -9,7 +9,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install bazel
-      uses: ngalaiko/bazel-action/1.2.1@master
+      uses: abhinavsingh/setup-bazel@v3
+      with:
+        versioin: 3.7.2
     - name: Build service
       run:  bazel build //$JAVA_PACKAGE_PATH/...
     - name: Test
