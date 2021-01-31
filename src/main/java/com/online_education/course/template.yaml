@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: Course service
+
+Globals:
+  Function:
+    Runtime: java8
+    MemorySize: 512
+    Timeout: 25
+  Api:
+    OpenApiVersion: '3.0.1'
+
+Resources:
+  CourseCreateLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: course_deploy.jar
+      Handler: com.online_education.course.server.CourseServiceHandler::handleCourseCreate
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: course
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /course
+            Method: POST
+  CourseUpdateLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: course_deploy.jar
+      Handler: com.online_education.course.server.CourseServiceHandler::handleCourseUpdate
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: course
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /course
+            Method: PATCH
+  CourseGetLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: course_deploy.jar
+      Handler: com.online_education.course.server.CourseServiceHandler::handleCourseGet
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: course
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /course
+            Method: GET
