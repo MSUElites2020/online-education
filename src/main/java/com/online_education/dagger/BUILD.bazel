@@ -1,8 +1,8 @@
 load("@rules_java//java:defs.bzl", "java_library")
 
 java_library(
-    name = "aws_resource_module",
-    srcs = glob(["AWSResourceModule/*.java"]),
+    name = "dynamodb_module",
+    srcs = glob(["AWSResourceModule/DynamoDBModule.java"]),
     visibility = ["//visibility:public"],
     deps = [
         "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
@@ -20,5 +20,24 @@ java_library(
     ],
     exports = [
         "@maven//:com_fasterxml_jackson_core_jackson_databind",
+    ]
+)
+
+java_library(
+    name = "elastic_search_module",
+    srcs = ["AWSResourceModule/ElasticSearchModule.java"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//:dagger",
+        "//src/main/java/com/amazonaws/http:aws_apache_interceptor",
+        "@maven//:org_elasticsearch_client_elasticsearch_rest_high_level_client",
+        "@maven//:org_elasticsearch_client_elasticsearch_rest_client",
+        "@maven//:org_apache_httpcomponents_httpcore",
+        "@maven//:org_apache_httpcomponents_httpasyncclient",
+        "@maven//:com_amazonaws_aws_java_sdk_core",
+        ],
+    exports = [
+        "@maven//:org_elasticsearch_client_elasticsearch_rest_high_level_client",
+        "@maven//:org_elasticsearch_client_elasticsearch_rest_client",
     ]
 )

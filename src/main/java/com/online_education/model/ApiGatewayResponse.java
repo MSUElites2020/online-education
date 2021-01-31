@@ -1,9 +1,7 @@
 package com.online_education.model;
 
-import lombok.Builder;
 import lombok.Data;
 
-@Builder
 @Data
 public class ApiGatewayResponse {
     private int statusCode;
