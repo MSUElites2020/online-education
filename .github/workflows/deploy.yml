@@ -25,7 +25,9 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch }} 
       - name: Install bazel
-        uses: ngalaiko/bazel-action/1.2.1@master
+        uses: abhinavsingh/setup-bazel@v3
+        with:
+          version: 3.7.2
       - name: Build deploy jar
         run: bazel build //$JAVA_PACKAGE_PATH/${{ github.event.inputs.service }}:${{ github.event.inputs.service }}_deploy.jar
       - name: Copy binary to service package
