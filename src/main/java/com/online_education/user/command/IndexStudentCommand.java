@@ -64,7 +64,7 @@ public class IndexStudentCommand {
         case MODIFY:
           // 为了使用kibana, aws 只支持6.7。以下的构建函数是6.7的版本。
           UpdateRequest updateRequest =
-              new UpdateRequest(INDEX_NAME, "doc", userName).doc(jsonString, XContentType.JSON);
+              new UpdateRequest(INDEX_NAME, "_doc", userName).doc(jsonString, XContentType.JSON);
           try{
             restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);
           } catch (IOException e) {
