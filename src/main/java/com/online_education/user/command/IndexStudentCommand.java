@@ -44,6 +44,10 @@ public class IndexStudentCommand {
 
       String userName = record.getDynamodb().getNewImage().get("user_name").getS();
       String eventName = record.getEventName().toLowerCase();
+
+      log.info("event: {}", record.getEventName());
+      log.info("data: {}", record.getDynamodb().toString());
+
       Map<String, AttributeValue> newImage = record.getDynamodb().getNewImage();
       switch (eventName) {
         case INSERT:
@@ -79,9 +83,6 @@ public class IndexStudentCommand {
           break;
         default:
       }
-
-      log.info(record.getEventName());
-      log.info(record.getDynamodb().toString());
     }
   }
 }
