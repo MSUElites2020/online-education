@@ -74,13 +74,14 @@ public class IndexStudentCommand {
           break;
         case REMOVE:
           // Getting newImage at removal will throw NPE, b/c there is no newImage.
-          userName = record.getDynamodb().getOldImage().get("user_name").getS();
-          try{
+          log.info("dynamoDB for remove {}", record.getDynamodb());
+          // userName = record.getDynamodb().getOldImage().get("user_name").getS();
+         /* try{
             restHighLevelClient.delete(new DeleteRequest(INDEX_NAME, userName), RequestOptions.DEFAULT);
           } catch (IOException e) {
             log.error("Failed to delete {}", newImage, e);
-          }
-          log.info("Successfully deleted {}", newImage);
+          }*/
+          // log.info("Successfully deleted {}", newImage);
           break;
         default:
       }
