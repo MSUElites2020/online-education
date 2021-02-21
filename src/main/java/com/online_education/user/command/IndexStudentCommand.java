@@ -25,6 +25,7 @@ public class IndexStudentCommand {
   private static final String MODIFY = "modify";
   private static final String REMOVE = "remove";
   private static final String INDEX_NAME = "student";
+  private static final String USER_NAME = "user_name";
 
   @Inject
   public IndexStudentCommand(RestHighLevelClient restHighLevelClient, ObjectMapper objectMapper) {
@@ -42,14 +43,13 @@ public class IndexStudentCommand {
         throw e;
       }
 
-      String userName;
+      String userName = record.getDynamodb().getKeys().get(USER_NAME).getS();
       String eventName = record.getEventName().toLowerCase();
-      log.info("DynamoDB item: {}", record.getDynamodb().getNewImage());
+      log.info("DynamoDB item: {}", record.getDynamodb());
       log.info("DynamoDB event type: {}", eventName);
       Map<String, AttributeValue> newImage = record.getDynamodb().getNewImage();
       switch (eventName) {
         case INSERT:
-          userName = record.getDynamodb().getNewImage().get("user_name").getS();
           IndexRequest indexRequest =
               new IndexRequest(INDEX_NAME).id(userName).source(jsonString, XContentType.JSON);
           try {
@@ -61,7 +61,6 @@ public class IndexStudentCommand {
           log.info("Successfully indexed {}", newImage);
           break;
         case MODIFY:
-          userName = record.getDynamodb().getNewImage().get("user_name").getS();
           UpdateRequest updateRequest =
               new UpdateRequest(INDEX_NAME, userName).doc(jsonString, XContentType.JSON);
           try{
@@ -73,15 +72,12 @@ public class IndexStudentCommand {
           log.info("Successfully updated {}", newImage);
           break;
         case REMOVE:
-          // Getting newImage at removal will throw NPE, b/c there is no newImage.
-          log.info("dynamoDB for remove {}", record.getDynamodb());
-          // userName = record.getDynamodb().getOldImage().get("user_name").getS();
-         /* try{
+          try{
             restHighLevelClient.delete(new DeleteRequest(INDEX_NAME, userName), RequestOptions.DEFAULT);
           } catch (IOException e) {
             log.error("Failed to delete {}", newImage, e);
-          }*/
-          // log.info("Successfully deleted {}", newImage);
+          }
+          log.info("Successfully deleted {}", newImage);
           break;
         default:
       }
