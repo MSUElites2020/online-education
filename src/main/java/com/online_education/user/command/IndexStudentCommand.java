@@ -42,13 +42,14 @@ public class IndexStudentCommand {
         throw e;
       }
 
-      String userName = record.getDynamodb().getNewImage().get("user_name").getS();
+      String userName;
       String eventName = record.getEventName().toLowerCase();
       log.info("DynamoDB item: {}", record.getDynamodb().getNewImage());
       log.info("DynamoDB event type: {}", eventName);
       Map<String, AttributeValue> newImage = record.getDynamodb().getNewImage();
       switch (eventName) {
         case INSERT:
+          userName = record.getDynamodb().getNewImage().get("user_name").getS();
           IndexRequest indexRequest =
               new IndexRequest(INDEX_NAME).id(userName).source(jsonString, XContentType.JSON);
           try {
@@ -60,6 +61,7 @@ public class IndexStudentCommand {
           log.info("Successfully indexed {}", newImage);
           break;
         case MODIFY:
+          userName = record.getDynamodb().getNewImage().get("user_name").getS();
           UpdateRequest updateRequest =
               new UpdateRequest(INDEX_NAME, userName).doc(jsonString, XContentType.JSON);
           try{
@@ -70,8 +72,9 @@ public class IndexStudentCommand {
           }
           log.info("Successfully updated {}", newImage);
           break;
-
         case REMOVE:
+          // Getting newImage at removal will throw NPE, b/c there is no newImage.
+          userName = record.getDynamodb().getOldImage().get("user_name").getS();
           try{
             restHighLevelClient.delete(new DeleteRequest(INDEX_NAME, userName), RequestOptions.DEFAULT);
           } catch (IOException e) {
