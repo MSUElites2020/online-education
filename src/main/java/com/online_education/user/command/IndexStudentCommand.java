@@ -2,10 +2,8 @@ package com.online_education.user.command;
 
 import com.amazonaws.services.lambda.runtime.events.DynamodbEvent;
 import com.amazonaws.services.lambda.runtime.events.DynamodbEvent.DynamodbStreamRecord;
-import com.amazonaws.services.lambda.runtime.events.models.dynamodb.AttributeValue;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.util.Map;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -47,7 +45,7 @@ public class IndexStudentCommand {
       String eventName = record.getEventName().toLowerCase();
       log.info("DynamoDB item: {}", record.getDynamodb());
       log.info("DynamoDB event type: {}", eventName);
-      Map<String, AttributeValue> newImage = record.getDynamodb().getNewImage();
+
       switch (eventName) {
         case INSERT:
           IndexRequest indexRequest =
@@ -55,10 +53,10 @@ public class IndexStudentCommand {
           try {
             restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
           } catch (IOException e) {
-            log.error("Failed to index {}", newImage, e);
+            log.error("Failed to index {}", jsonString, e);
             throw e;
           }
-          log.info("Successfully indexed {}", newImage);
+          log.info("Successfully indexed {}", jsonString);
           break;
         case MODIFY:
           UpdateRequest updateRequest =
@@ -66,18 +64,18 @@ public class IndexStudentCommand {
           try{
             restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);
           } catch (IOException e) {
-            log.error("Failed to update {}", newImage, e);
+            log.error("Failed to update {}", jsonString, e);
             throw e;
           }
-          log.info("Successfully updated {}", newImage);
+          log.info("Successfully updated {}", jsonString);
           break;
         case REMOVE:
           try{
             restHighLevelClient.delete(new DeleteRequest(INDEX_NAME, userName), RequestOptions.DEFAULT);
           } catch (IOException e) {
-            log.error("Failed to delete {}", newImage, e);
+            log.error("Failed to delete {}", userName, e);
           }
-          log.info("Successfully deleted {}", newImage);
+          log.info("Successfully deleted {}", userName);
           break;
         default:
       }
