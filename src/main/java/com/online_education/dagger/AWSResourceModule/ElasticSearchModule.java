@@ -16,7 +16,7 @@ import org.elasticsearch.client.RestHighLevelClient;
 @Module
 public class ElasticSearchModule {
   private static final String HOST_NAME =
-      "search-msu-online-education-2-tnjwcrvx7dbwbmolrw6za44fru.us-east-1.es.amazonaws.com";
+      "search-msu-online-education-3-zzuqkmhpgzheba7j5svbg7bwgm.us-east-1.es.amazonaws.com/";
   private static final int HOST_PORT = 443;
   private static final String SCHMEME = "https";
   private static final String SERVICE_NAME = "es";

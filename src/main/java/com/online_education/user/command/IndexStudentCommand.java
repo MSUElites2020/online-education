@@ -44,10 +44,6 @@ public class IndexStudentCommand {
 
       String userName = record.getDynamodb().getNewImage().get("user_name").getS();
       String eventName = record.getEventName().toLowerCase();
-
-      log.info("event: {}", record.getEventName());
-      log.info("data: {}", record.getDynamodb().toString());
-
       Map<String, AttributeValue> newImage = record.getDynamodb().getNewImage();
       switch (eventName) {
         case INSERT:
@@ -62,9 +58,8 @@ public class IndexStudentCommand {
           log.info("Successfully indexed {}", newImage);
           break;
         case MODIFY:
-          // 为了使用kibana, aws 只支持6.7。以下的构建函数是6.7的版本。
           UpdateRequest updateRequest =
-              new UpdateRequest(INDEX_NAME, "_doc", userName).doc(jsonString, XContentType.JSON);
+              new UpdateRequest(INDEX_NAME, userName).doc(jsonString, XContentType.JSON);
           try{
             restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);
           } catch (IOException e) {
@@ -84,6 +79,9 @@ public class IndexStudentCommand {
           break;
         default:
       }
+
+      log.info(record.getEventName());
+      log.info(record.getDynamodb().toString());
     }
   }
 }
