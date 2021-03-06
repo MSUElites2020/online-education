@@ -1,7 +1,7 @@
 package com.online_education.user.server;
 
 import com.online_education.dagger.AWSResourceModule.DynamoDBModule;
-import com.online_education.dagger.AWSResourceModule.ElasticSearchModule;
+import com.online_education.search.ElasticSearchModule;
 import com.online_education.dagger.ObjectMapperModule;
 import com.online_education.dao.student.StudentDaoModule;
 import com.online_education.dao.teacher.TeacherDaoModule;
