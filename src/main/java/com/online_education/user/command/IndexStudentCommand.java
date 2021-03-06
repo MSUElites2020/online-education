@@ -36,6 +36,7 @@ public class IndexStudentCommand {
       String jsonString = null;
       try {
         jsonString = objectMapper.writeValueAsString(record.getDynamodb().getNewImage());
+        log.info("json string: {}", jsonString);
       } catch (Exception e) {
         log.error("Failed to convert new image to json string", e);
         throw e;
@@ -79,9 +80,6 @@ public class IndexStudentCommand {
           break;
         default:
       }
-
-      log.info(record.getEventName());
-      log.info(record.getDynamodb().toString());
     }
   }
 }
