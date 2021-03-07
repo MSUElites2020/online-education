@@ -2,7 +2,6 @@ package com.online_education.user.server;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.DynamodbEvent;
-import com.amazonaws.services.lambda.runtime.events.DynamodbEvent.DynamodbStreamRecord;
 import com.online_education.model.ApiGatewayRequest;
 import com.online_education.model.ApiGatewayResponse;
 import com.online_education.user.command.IndexStudentCommand;

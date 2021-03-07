@@ -1,0 +1,23 @@
+java_library(
+    name = "search_module",
+    srcs = ["ElasticSearchModule.java",
+            "Indexer.java"],
+    visibility = ["//visibility:public",],
+    deps = [
+        "//:dagger",
+        "//:lombok",
+        "//:log",
+        "//src/main/java/com/amazonaws/http:aws_apache_interceptor",
+        "//src/main/java/com/online_education/dagger:object_mapper_module",
+        "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
+        "@maven//:org_elasticsearch_elasticsearch",
+        "@maven//:org_elasticsearch_elasticsearch_x_content",
+        "@maven//:com_amazonaws_aws_lambda_java_core",
+        "@maven//:com_amazonaws_aws_lambda_java_events",
+        "@maven//:org_elasticsearch_client_elasticsearch_rest_high_level_client",
+        "@maven//:org_elasticsearch_client_elasticsearch_rest_client",
+        "@maven//:org_apache_httpcomponents_httpcore",
+        "@maven//:org_apache_httpcomponents_httpasyncclient",
+        "@maven//:com_amazonaws_aws_java_sdk_core",
+        ],
+)

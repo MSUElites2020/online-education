@@ -1,4 +1,4 @@
-package com.online_education.dagger.AWSResourceModule;
+package com.online_education.search;
 
 import com.amazonaws.auth.AWS4Signer;
 import com.amazonaws.auth.AWSCredentialsProvider;
