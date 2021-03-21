@@ -65,7 +65,7 @@ public class UserGetCommand {
         log.info("Parse claims cognito:username " + claims.get("cognito:username") + " true");
         return true;
       } else {
-        log.info("Parse claims cognito:username"  + claims.get("cognito:username" + " false"));
+        log.info("Parse claims cognito:username "  + claims.get("cognito:username") + " false");
         return false;
       }
     } catch(Exception e) {
