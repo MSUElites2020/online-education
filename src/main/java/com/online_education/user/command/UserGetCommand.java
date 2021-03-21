@@ -7,6 +7,8 @@ import com.online_education.dao.student.Student;
 import com.online_education.dao.student.StudentDao;
 import com.online_education.model.ApiGatewayRequest;
 import com.online_education.model.ApiGatewayResponse;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import java.io.IOException;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +30,17 @@ public class UserGetCommand {
 
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
     String userName = request.queryStringParameters.get("userName");
+    String auth = request.queryStringParameters.get("userName");
+    checkAuth(auth, userName);
     log.info("Retrieving student " + userName);
     Student student = studentDao.get(userName);
     return new ApiGatewayResponse(200, "return item is : " + objectMapper.writeValueAsString(student));
+  }
+
+  private boolean checkAuth(String auth, String userName) {
+    Claims claims = Jwts.parser()
+        .parseClaimsJws(auth).getBody();
+    log.info("Parse claims " + claims);
+    return true;
   }
 }

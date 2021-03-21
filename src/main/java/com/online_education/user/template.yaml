@@ -16,6 +16,9 @@ Resources:
     Properties:
       CodeUri: user_deploy.jar
       Handler: com.online_education.user.server.UserServiceHandler::handleUserRegister
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: student
   UserCreateLambda:
     Type: AWS::Serverless::Function
     Properties:
