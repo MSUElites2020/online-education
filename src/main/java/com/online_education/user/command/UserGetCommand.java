@@ -30,7 +30,7 @@ public class UserGetCommand {
 
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
     String userName = request.queryStringParameters.get("userName");
-    String auth = request.queryStringParameters.get("userName");
+    String auth = request.queryStringParameters.get("token");
     checkAuth(auth, userName);
     log.info("Retrieving student " + userName);
     Student student = studentDao.get(userName);
@@ -40,7 +40,7 @@ public class UserGetCommand {
   private boolean checkAuth(String auth, String userName) {
     Claims claims = Jwts.parser()
         .parseClaimsJws(auth).getBody();
-    log.info("Parse claims " + claims);
+    log.info("Parse claims " + claims.toString());
     return true;
   }
 }
