@@ -30,9 +30,9 @@ public class UserGetCommand {
 
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
     String userName = request.queryStringParameters.get("userName");
-    log.info("Get userName" + userName);
+    log.info("Get userName: " + userName);
     String auth = request.queryStringParameters.get("token");
-    log.info("Get token" + auth);
+    log.info("Get token: " + auth);
     checkAuth(auth);
     log.info("Retrieving student " + userName);
     Student student = studentDao.get(userName);
@@ -40,9 +40,14 @@ public class UserGetCommand {
   }
 
   private boolean checkAuth(String auth) {
-    Claims claims = Jwts.parser()
-        .parseClaimsJws(auth).getBody();
-    log.info("Parse claims " + claims.toString());
+    try {
+      Claims claims = Jwts.parser()
+          .parseClaimsJws(auth).getBody();
+      log.info("Parse claims " + claims.toString());
+    } catch(Exception e) {
+      log.info("Get JWT parse exception " + e.getMessage());
+      throw e;
+    }
     return true;
   }
 }
