@@ -37,7 +37,8 @@ public class UserGetCommand {
     String auth = request.queryStringParameters.get("token");
     log.info("Get token: " + auth);
     if (!checkAuth(auth, userName)) {
-      return new ApiGatewayResponse(401, "User " + userName + "is not permitted to check other user's info");
+      log.info("User " + userName + " is not permitted to check other user's info");
+      return new ApiGatewayResponse(401, "User " + userName + " is not permitted to check other user's info");
     }
     log.info("Retrieving student " + userName);
     Student student = studentDao.get(userName);
@@ -61,10 +62,10 @@ public class UserGetCommand {
       log.info("Parse claims " + claims.toString());
 
       if (claims.get("cognito:username").toString().equals(userName)) {
-        log.info("Parse claims cognito:username" + claims.get("cognito:username"));
+        log.info("Parse claims cognito:username " + claims.get("cognito:username") + " true");
         return true;
       } else {
-        log.info("Parse claims cognito:username" + claims.get("cognito:username"));
+        log.info("Parse claims cognito:username"  + claims.get("cognito:username" + " false"));
         return false;
       }
     } catch(Exception e) {
