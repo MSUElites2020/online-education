@@ -30,14 +30,16 @@ public class UserGetCommand {
 
   public ApiGatewayResponse execute(ApiGatewayRequest request) throws IOException {
     String userName = request.queryStringParameters.get("userName");
+    log.info("Get userName" + userName);
     String auth = request.queryStringParameters.get("token");
-    checkAuth(auth, userName);
+    log.info("Get token" + auth);
+    checkAuth(auth);
     log.info("Retrieving student " + userName);
     Student student = studentDao.get(userName);
     return new ApiGatewayResponse(200, "return item is : " + objectMapper.writeValueAsString(student));
   }
 
-  private boolean checkAuth(String auth, String userName) {
+  private boolean checkAuth(String auth) {
     Claims claims = Jwts.parser()
         .parseClaimsJws(auth).getBody();
     log.info("Parse claims " + claims.toString());
