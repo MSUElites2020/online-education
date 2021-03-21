@@ -13,6 +13,7 @@ java_library(
         "@maven//:com_amazonaws_aws_java_sdk_dynamodb",
         "@maven//:org_elasticsearch_client_elasticsearch_rest_high_level_client",
         "@maven//:io_jsonwebtoken_jjwt",
+        "@maven//:commons_codec_commons_codec",
         "//:lombok",
         "@maven//:com_amazonaws_aws_lambda_java_events",
         "//src/main/java/com/online_education/model",

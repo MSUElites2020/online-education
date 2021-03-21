@@ -52,7 +52,8 @@ maven_install(
         "org.apache.httpcomponents:httpasyncclient:4.1.4",
         "org.apache.httpcomponents:httpcore:4.4.12",
         "org.elasticsearch:elasticsearch:7.8.1",
-        "io.jsonwebtoken:jjwt:0.9.1"
+        "io.jsonwebtoken:jjwt:0.9.1",
+        "commons-codec:commons-codec:1.11"
     ],
     fetch_sources = True,
     repositories = DAGGER_REPOSITORIES + [
