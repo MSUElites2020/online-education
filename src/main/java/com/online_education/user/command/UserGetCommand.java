@@ -10,7 +10,6 @@ import com.online_education.model.ApiGatewayResponse;
 import org.apache.commons.codec.binary.Base64;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import java.io.IOException;
 import java.security.KeyFactory;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.X509EncodedKeySpec;
@@ -37,13 +36,15 @@ public class UserGetCommand {
     log.info("Get userName: " + userName);
     String auth = request.queryStringParameters.get("token");
     log.info("Get token: " + auth);
-    checkAuth(auth);
+    if (!checkAuth(auth, userName)) {
+      return new ApiGatewayResponse(401, "User " + userName + "is not permitted to check other user's info");
+    }
     log.info("Retrieving student " + userName);
     Student student = studentDao.get(userName);
     return new ApiGatewayResponse(200, "return item is : " + objectMapper.writeValueAsString(student));
   }
 
-  private boolean checkAuth(String auth) throws Exception {
+  private boolean checkAuth(String auth, String userName) throws Exception {
     try {
       String publicKeyPem = "-----BEGIN PUBLIC KEY-----\n"
           + "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw1VjeUPpZ4/SEtsWzZY1\n"
@@ -58,11 +59,18 @@ public class UserGetCommand {
           .setSigningKey(readPublicKey(publicKeyPem))
           .parseClaimsJws(auth).getBody();
       log.info("Parse claims " + claims.toString());
+
+      if (claims.get("cognito:username").toString().equals(userName)) {
+        log.info("Parse claims cognito:username" + claims.get("cognito:username"));
+        return true;
+      } else {
+        log.info("Parse claims cognito:username" + claims.get("cognito:username"));
+        return false;
+      }
     } catch(Exception e) {
       log.info("Get JWT parse exception " + e.getMessage());
       throw e;
     }
-    return true;
   }
 
   public static RSAPublicKey readPublicKey(String keyString) throws Exception {
