@@ -7,6 +7,7 @@ import com.online_education.model.ApiGatewayResponse;
 import com.online_education.user.command.IndexStudentCommand;
 import com.online_education.user.command.TeacherCreateCommand;
 import com.online_education.user.command.TeacherGetCommand;
+import com.online_education.user.command.TeacherScanCommand;
 import com.online_education.user.command.TeacherUpdateCommand;
 import com.online_education.user.command.UserCreateCommand;
 import com.online_education.user.command.UserGetCommand;
@@ -27,6 +28,7 @@ public class UserServiceHandler {
   @Inject TeacherCreateCommand teacherCreateCommand;
   @Inject TeacherUpdateCommand teacherUpdateCommand;
   @Inject TeacherGetCommand teacherGetCommand;
+  @Inject TeacherScanCommand teacherScanCommand;
   @Inject IndexStudentCommand indexStudentCommand;
 
   public UserServiceHandler() {
@@ -96,6 +98,17 @@ public class UserServiceHandler {
               + e.getMessage()
               + " "
               + request.queryStringParameters.get("userName"));
+    }
+  }
+
+  public ApiGatewayResponse handleTeacherScan(ApiGatewayRequest request) {
+    try {
+      return teacherScanCommand.execute(request);
+    } catch (Exception e) {
+      return new ApiGatewayResponse(
+              500,
+              "Get teacher list failed "
+                      + e.getMessage());
     }
   }
 

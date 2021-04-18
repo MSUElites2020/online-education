@@ -119,3 +119,17 @@ Resources:
           Properties:
             Path: /teacher
             Method: GET
+  TeacherScanLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: user_deploy.jar
+      Handler: com.online_education.user.server.UserServiceHandler::handleTeacherScan
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: teacher
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /teachers
+            Method: GET

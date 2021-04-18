@@ -5,6 +5,8 @@ package com.online_education.dao.teacher;/**
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig.SaveBehavior;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -35,5 +37,10 @@ public class TeacherDaoImpl implements TeacherDao {
         .withSaveBehavior(SaveBehavior.UPDATE_SKIP_NULL_ATTRIBUTES)
         .build();
     dynamoDBMapper.save(teacher, dynamoDBMapperConfig);
+  }
+
+  @Override
+  public List<Teacher> scan() {
+    return dynamoDBMapper.scan(Teacher.class, new DynamoDBScanExpression());
   }
 }
